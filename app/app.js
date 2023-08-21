@@ -6,7 +6,6 @@ var logger = require('morgan');
 var dbAPIRouter = require("./routes/DB_API");
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var datasbaseRouter = require("./routes/databaseRouter");
 var auditFeedbackRouter = require("./routes/dbauditfeedback")
 var evidenceRouter = require("./routes/dbevidence")
 var DBQMSRequirementsRouter = require("./routes/dbqmsrequirements")
@@ -30,7 +29,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use("/DB_API", dbAPIRouter);
-app.use("/databaseRouter", datasbaseRouter);
 app.use("/AuditFeedback", auditFeedbackRouter);
 app.use("/Evidence", evidenceRouter);
 app.use("/QMSRequirements", DBQMSRequirementsRouter);
