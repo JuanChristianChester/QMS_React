@@ -12,7 +12,9 @@ class DBQMSRequirement extends Database {
     const query = 'SELECT * FROM tblQMSRequirements';
     var results = await this.executeQuery(query);
     this.qmsRequirementList.push(results);
-    return results;
+    //turn results into a JSON object
+    var json = JSON.stringify(results);
+    return json;
   }
 
   getQMSRequirementList() {

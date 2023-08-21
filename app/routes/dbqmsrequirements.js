@@ -6,7 +6,8 @@ const DBQMSRequirements = require('../Database/DBQMSRequirements');
 router.get('/', async (req, res) => {
   try {
     db = new DBQMSRequirements();
-    const qmsRequirements = await db.retrieveQMSRequirementList();
+    var qmsRequirements = await db.retrieveQMSRequirementList();
+    qmsRequirements = JSON.parse(qmsRequirements);
     res.json(qmsRequirements);
   } catch (error) {
     console.error('', error);
