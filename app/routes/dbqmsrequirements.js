@@ -3,7 +3,7 @@ const router = express.Router();
 const DBQMSRequirements = require('../Database/DBQMSRequirements');
 
 
-router.get('/', async (req, res) => {
+router.get('/fetch', async (req, res) => {
   try {
     db = new DBQMSRequirements();
     var qmsRequirements = await db.retrieveQMSRequirementList();
@@ -12,6 +12,19 @@ router.get('/', async (req, res) => {
   } catch (error) {
     console.error('', error);
     res.json({ 'Error retrieving qms Requirements:' : error });
+  }
+});
+
+//post a new qms requirement
+router.post('/post', async (req, res) => {
+  try {
+    db = new DBQMSRequirements();
+    var qmsRequirement = await db.createQMSRequirement(req.body);
+    qmsRequirement = JSON.parse(qmsRequirement);
+    res.json(qmsRequirement);
+  } catch (error) {
+    console.error('', error);
+    res.json({ 'Error creating qms requirement:' : error });
   }
 });
 
