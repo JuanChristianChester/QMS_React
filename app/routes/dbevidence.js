@@ -7,7 +7,7 @@ db = new DBEvidence();
 
 router.get('/', async (req, res) => {
     try {
-        const evidence = await db.getTblEvidence();
+        const evidence = await db.getEvidenceList();
         res.json(evidence);
     } catch (error) {
         console.error('Error retrieving evidence:', error);
