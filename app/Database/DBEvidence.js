@@ -9,9 +9,19 @@ class DBEvidence extends Database {
 
   async getTblEvidence() {
     const query = 'SELECT * FROM tblEvidence';
-    var results = await this.executeQuery(query);
-    this.evidenceList.push(results);
-    return results;
+    try {
+      var results = await this.executeQuery(query);
+
+      // convert the results into JSON
+      results = JSON.parse(JSON.stringify(results));
+
+      this.evidenceList = results;
+      
+      return this.evidenceList;
+    } catch (error) {
+      console.error('Error getting evidence:', error);
+      return [];
+    }
   }
 
   getEvidenceList() {
