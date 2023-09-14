@@ -11,7 +11,12 @@ class DBAuditFeedback extends Database {
   async getTblAuditFeedback() {
     var query = 'SELECT * FROM tblAuditFeedback';
     var results = await this.executeQuery(query);
+
+    // convert the results into JSON
+    results = JSON.parse(JSON.stringify(results));
+    
     this.auditFeedbacklst.push(results);
+
     return results;
   }
 
