@@ -6,9 +6,9 @@ var logger = require('morgan');
 var dbAPIRouter = require("./routes/DB_API");
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var auditFeedbackRouter = require("./routes/dbauditfeedback")
-var evidenceRouter = require("./routes/dbevidence")
-var DBQMSRequirementsRouter = require("./routes/dbqmsrequirements")
+var auditFeedbackRouter = require("./routes/dbauditfeedback");
+var evidenceRouter = require("./routes/dbevidence");
+var DBQMSRequirementsRouter = require("./routes/dbqmsrequirements");
 
 var cors = require("cors");
 
