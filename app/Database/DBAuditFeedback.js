@@ -4,11 +4,11 @@ class DBAuditFeedback extends Database {
   constructor(config) {
     super(config);
     this.auditFeedbacklst = [];
-    this.getTblAuditFeedback();
+    this.selectAll();
   }
 
 
-  async getTblAuditFeedback() {
+  async selectAll() {
     var query = 'SELECT * FROM tblAuditFeedback';
     var results = await this.executeQuery(query);
 

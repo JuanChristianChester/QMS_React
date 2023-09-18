@@ -3,7 +3,7 @@ const router = express.Router();
 const DBAuditFeedback = require('../Database/DBAuditFeedback');
 
 
-router.get('/', async (req, res) => {
+
   try {
     db = new DBAuditFeedback();
     const auditFeedback = await db.getTblAuditFeedback();
@@ -12,6 +12,5 @@ router.get('/', async (req, res) => {
     console.error('', error);
     res.json({ 'Error retrieving audit feedback:' : error });
   }
-});
 
 module.exports = router;

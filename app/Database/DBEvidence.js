@@ -4,10 +4,10 @@ class DBEvidence extends Database {
   constructor(config) {
     super(config);
     this.evidenceList = [];
-    this.getTblEvidence();
+    this.selectAll();
   }
 
-  async getTblEvidence() {
+  async selectAll() {
     const query = 'SELECT * FROM tblEvidence';
     try {
       var results = await this.executeQuery(query);

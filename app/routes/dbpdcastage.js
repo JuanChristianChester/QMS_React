@@ -7,7 +7,7 @@ db = new DBPDCAStage();
 
 router.get('/', async (req, res) => {
     try {
-        const pdcastage = await db.getPDCAStageList();
+        const pdcastage = await db.retrievePDCAStageList();
         res.json(pdcastage);
     } catch (error) {
         console.error('Error retrieving PDCA Stage:', error);

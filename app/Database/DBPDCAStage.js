@@ -4,10 +4,10 @@ class DBPDCAStage extends Database {
   constructor(config) {
     super(config);
     this.pdcaStageList = [];
-    this.retrievePDCAStageList();
+    this.selectAll();
   }
 
-  async retrievePDCAStageList() {
+  async selectAll() {
     const query = 'SELECT * FROM tblPDCAStage';
     var results = await this.executeQuery(query);
     this.pdcaStageList.push(results);

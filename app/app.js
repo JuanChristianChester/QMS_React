@@ -3,12 +3,8 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var dbAPIRouter = require("./routes/DB_API");
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var auditFeedbackRouter = require("./routes/dbauditfeedback");
-var evidenceRouter = require("./routes/dbevidence");
-var DBQMSRequirementsRouter = require("./routes/dbqmsrequirements");
+var selectRouter = require('./routes/selectrouter');
+
 
 var cors = require("cors");
 
@@ -26,12 +22,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use("/DB_API", dbAPIRouter);
-app.use("/AuditFeedback", auditFeedbackRouter);
-app.use("/Evidence", evidenceRouter);
-app.use("/QMSRequirements", DBQMSRequirementsRouter);
+param = "auditFeedback"
+selectRouter(app);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

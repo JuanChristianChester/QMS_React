@@ -4,10 +4,10 @@ class DBPDCASection extends Database {
   constructor(config) {
     super(config);
     this.pdcaSectionList = [];
-    this.retrievePDCASectionList();
+    this.selectAll();
   }
 
-  async retrievePDCASectionList() {
+  async selectAll() {
     const query = 'SELECT * FROM tblPDCASection';
     var results = await this.executeQuery(query);
     this.pdcaSectionList.push(results);
