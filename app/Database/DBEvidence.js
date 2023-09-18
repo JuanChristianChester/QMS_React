@@ -4,25 +4,6 @@ class DBEvidence extends Database {
   constructor(config) {
     super(config);
     this.evidenceList = [];
-    this.selectAll();
-    this.tablename = 'tblEvidence';
-  }
-
-  async selectAll() {
-    const query = 'SELECT * FROM tblEvidence;';
-    try {
-      var results = await this.executeQuery(query);
-
-      // convert the results into JSON
-      results = JSON.parse(JSON.stringify(results));
-
-      this.evidenceList = results;
-      return this.evidenceList;
-    } catch (error) {
-      console.error('Error in SELECT query:', error);
-      return [];
-    }
-
   }
 
   getEvidenceList() {

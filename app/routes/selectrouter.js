@@ -18,22 +18,19 @@ function selectRouter(app) {
 
 async function handleDatabaseOperation(tableName) {
   switch (tableName) {
-    case 'auditFeedback':
+    case 'AuditFeedback':
       return await performDatabaseOperation(DBAuditFeedback, 'tblAuditFeedback');
     case 'QMSRequirements':
       return await performDatabaseOperation(DBQMSRequirements, 'tblQMSRequirements');
-    case 'evidence':
+    case 'Evidence':
       return await performDatabaseOperation(DBEvidence, 'tblEvidence');
     case 'PDCAStages':
-      return await performDatabaseOperation(DBPDCAStages, 'tblPDCAStages');
-    default:
-      throw new Error('Table not found');
+      return await performDatabaseOperation(DBPDCAStages, 'tblPDCAStage');
   }
 }
 
 async function performDatabaseOperation(DatabaseClass, tableName) {
   const db = new DatabaseClass();
-  console.log('Table name:', tableName);
   return await db.selectAll(tableName);
 }
 
