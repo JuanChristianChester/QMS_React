@@ -77,39 +77,77 @@ CREATE TABLE tblEvidenceLinkJoin (
 
 -- Insert data
 
-INSERT INTO tblPDCAStage (PDCAID, PDCAStage) VALUES (1, 'Plan');
-INSERT INTO tblPDCAStage (PDCAID, PDCAStage) VALUES (2, 'Do');
-INSERT INTO tblPDCAStage (PDCAID, PDCAStage) VALUES (3, 'Check');
-INSERT INTO tblPDCAStage (PDCAID, PDCAStage) VALUES (4, 'Act');
+-- Insert data into tblPDCAStage
+INSERT INTO tblPDCAStage (PDCAID, PDCAStage)
+VALUES
+    (1, 'Plan'),
+    (2, 'Do'),
+    (3, 'Check'),
+    (4, 'Act');
 
-INSERT INTO tblPDCASection (PDCASectionID, PDCAID, Section) VALUES (1, 1, 'Define the context of the organization');
-INSERT INTO tblPDCASection (PDCASectionID, PDCAID, Section) VALUES (2, 1, 'Define the scope, objectives and policies of the organization');
-INSERT INTO tblPDCASection (PDCASectionID, PDCAID, Section) VALUES (3, 1, 'Determine the processes in the organization');
-INSERT INTO tblPDCASection (PDCASectionID, PDCAID, Section) VALUES (4, 1, 'Determine the sequence of the processes');
-INSERT INTO tblPDCASection (PDCASectionID, PDCAID, Section) VALUES (5, 1, 'Define people or remits who take process ownership and accountability');
-INSERT INTO tblPDCASection (PDCASectionID, PDCAID, Section) VALUES (6, 1, 'Define the need for documented information\nneed for\ndocumented\ninformation');
-INSERT INTO tblPDCASection (PDCASectionID, PDCAID, Section) VALUES (7, 1, 'Define the interfaces, risks and activities within the process\ninterfaces, risks\nand activities\nwithin the\nprocess');
-INSERT INTO tblPDCASection (PDCASectionID, PDCAID, Section) VALUES (8, 1, 'Define the monitoring and measurement requirements');
-INSERT INTO tblPDCASection (PDCASectionID, PDCAID, Section) VALUES (9, 2, 'Implement');
-INSERT INTO tblPDCASection (PDCASectionID, PDCAID, Section) VALUES (10, 2, 'Define the resources needed');
-INSERT INTO tblPDCASection (PDCASectionID, PDCAID, Section) VALUES (11, 3, 'Verify the process against its planned objectives');
-INSERT INTO tblPDCASection (PDCASectionID, PDCAID, Section) VALUES (12, 4, 'Improvement');
+-- Insert data into tblPDCASection
+INSERT INTO tblPDCASection (PDCASectionID, PDCAID, Section)
+VALUES
+    (1, 1, 'Plan Section 1'),
+    (2, 1, 'Plan Section 2'),
+    (3, 2, 'Do Section 1'),
+    (4, 2, 'Do Section 2'),
+    (5, 3, 'Check Section 1'),
+    (6, 4, 'Act Section 1');
 
+-- Insert data into tblISO9001Pages
+INSERT INTO tblISO9001Pages (PageNumber, Link)
+VALUES
+    (101, 'https://example.com/page1'),
+    (102, 'https://example.com/page2'),
+    (103, 'https://example.com/page3');
 
--- insert data into tblISO9001Pages
-INSERT INTO tblISO9001Pages (PageNumber, Link) VALUES (1, 'https://www.iso.org/obp/ui/#iso:std:iso:9001:ed-5:v1:en');
-INSERT INTO tblISO9001Pages (PageNumber, Link) VALUES (2, 'https://www.iso.org/obp/ui/#iso:std:iso:9001:ed-5:v1:en:clause:4.4');
-INSERT INTO tblISO9001Pages (PageNumber, Link) VALUES (3, 'https://www.iso.org/obp/ui/#iso:std:iso:9001:ed-5:v1:en:clause:4.4.1');
-INSERT INTO tblISO9001Pages (PageNumber, Link) VALUES (4, 'https://www.iso.org/obp/ui/#iso:std:iso:9001:ed-5:v1:en:clause:4.4.2');
-INSERT INTO tblISO9001Pages (PageNumber, Link) VALUES (5, 'https://www.iso.org/obp/ui/#iso:std:iso:9001:ed-5:v1:en:clause:4.4.3');
-INSERT INTO tblISO9001Pages (PageNumber, Link) VALUES (6, 'https://www.iso.org/obp/ui/#iso:std:iso:9001:ed-5:v1:en:clause:4.4.4');
-INSERT INTO tblISO9001Pages (PageNumber, Link) VALUES (7, 'https://www.iso.org/obp/ui/#iso:std:iso:9001:ed-5:v1:en:clause:4.4.5');
-INSERT INTO tblISO9001Pages (PageNumber, Link) VALUES (8, 'https://www.iso.org/obp/ui/#iso:std:iso:9001:ed-5:v1:en:clause:4.4.6');
+-- Insert data into tblQMSRequirements
+INSERT INTO tblQMSRequirements (QMSID, PageID, QMSSection, Description, SectionDescription)
+VALUES
+    (1, 101, 'Section A', 'Requirement 1', 'Description for Requirement 1'),
+    (2, 101, 'Section B', 'Requirement 2', 'Description for Requirement 2'),
+    (3, 102, 'Section C', 'Requirement 3', 'Description for Requirement 3'),
+    (4, 103, 'Section D', 'Requirement 4', 'Description for Requirement 4');
 
--- insert data into tblQMSRequirements
-INSERT INTO tblQMSRequirements (QMSID, PageID, QMSSection, Description, SectionDescription) VALUES (1, 4, '4.4', 'Quality Management System and its processes', 'The organization shall establish, implement, maintain and continually improve a quality management system, including the processes needed and their interactions, in accordance with the requirements of this International Standard.');
-INSERT INTO tblQMSRequirements (QMSID, PageID, QMSSection, Description, SectionDescription) VALUES (2, 4, '4.4', 'Quality Management System and its processes', 'The organization shall determine the processes needed for the quality management system and their application throughout the organization, and shall:');
-INSERT INTO tblQMSRequirements (QMSID, PageID, QMSSection, Description, SectionDescription) VALUES (3, 4, '4.4', 'Quality Management System and its processes', 'a) determine the inputs required and the outputs expected from these processes;');
+-- Insert data into tblAuditFeedback
+INSERT INTO tblAuditFeedback (AuditID, AuditDetails, FeedbackResponse)
+VALUES
+    (101, 'Audit 1 Details', 'Feedback for Audit 1'),
+    (102, 'Audit 2 Details', 'Feedback for Audit 2');
 
-/* add some data to tblAuditFeedback */
-INSERT INTO tblAuditFeedback (AuditID, AuditDetails) VALUES (1, 'Widget Loose');
+-- Insert data into tblQMSJoinFeedback
+INSERT INTO tblQMSJoinFeedback (AuditID, QMSID)
+VALUES
+    (101, 1),
+    (101, 2),
+    (102, 3),
+    (102, 4);
+
+-- Insert data into tblQMSJoinPDCA
+INSERT INTO tblQMSJoinPDCA (PDCASectionID, QMSID)
+VALUES
+    (1, 1),
+    (2, 2),
+    (3, 3),
+    (4, 4),
+    (5, 1),
+    (6, 2);
+
+-- Insert data into tblExternalLinks
+INSERT INTO tblExternalLinks (LinkID, Link)
+VALUES
+    (1, 'https://external-link-1.com'),
+    (2, 'https://external-link-2.com');
+
+-- Insert data into tblEvidence
+INSERT INTO tblEvidence (PDCASectionID, EvidenceID, EvidenceDate, Body)
+VALUES
+    (1, 101, '2023-09-12', 'Evidence for PDCA Section 1'),
+    (2, 102, '2023-09-13', 'Evidence for PDCA Section 2');
+
+-- Insert data into tblEvidenceLinkJoin
+INSERT INTO tblEvidenceLinkJoin (EvidenceID, LinkID)
+VALUES
+    (101, 1),
+    (102, 2);
