@@ -6,10 +6,6 @@ class DBPDCASection extends Database {
     this.pdcaSectionList = [];
   }
 
-  getPDCASectionList() {
-    return this.pdcaSectionList;
-  }
-
   async addPDCASection(pdcaSection) {
     const insertQuery = 'INSERT INTO tblPDCASection (PDCASectionID, PDCAID, Section) VALUES (?, ?, ?)';
     try {

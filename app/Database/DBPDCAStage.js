@@ -6,11 +6,6 @@ class DBPDCAStage extends Database {
     this.pdcaStageList = [];
   }
 
-
-  getPDCAStageList() {
-    return this.pdcaStageList;
-  }
-
   async addPDCAStage(pdcaStage) {
     const insertQuery = 'INSERT INTO tblPDCAStage (PDCAID, PDCAStage) VALUES (?, ?)';
     try {

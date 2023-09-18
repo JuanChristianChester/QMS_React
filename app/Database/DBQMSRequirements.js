@@ -6,10 +6,6 @@ class DBQMSRequirement extends Database {
     this.connection = connection;
     this.qmsRequirementList = [];
   }
-  
-  getQMSRequirementList() {
-    return this.qmsRequirementList;
-  }
 
   addQMSRequirement(qmsRequirement) {
     const insertQuery = 'INSERT INTO tblQMSRequirements (QMSID, PageID, QMSSection, Description, SectionDescription) VALUES (?, ?, ?, ?, ?)';

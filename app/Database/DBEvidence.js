@@ -6,10 +6,6 @@ class DBEvidence extends Database {
     this.evidenceList = [];
   }
 
-  getEvidenceList() {
-    return this.evidenceList;
-  }
-
   async addEvidence(body, pdcaSectionID, evidenceDate) {
     const evidenceID = this.evidenceList.length + 1;
     this.evidenceList.push({ evidenceID, pdcaSectionID, evidenceDate, body });

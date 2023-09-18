@@ -6,9 +6,7 @@ class DBExternalLinks extends Database {
     this.externalLinksList = [];
   }
 
-  getExternalLinksList() {
-    return this.externalLinksList;
-  }
+
 
   async addExternalLink(link, evidenceID) {
     const linkID = this.getNextLinkID();
