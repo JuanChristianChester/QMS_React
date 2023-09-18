@@ -4,16 +4,6 @@ class DBExternalLinks extends Database {
   constructor(config) {
     super(config);
     this.externalLinksList = [];
-    this.selectAll();
-  }
-
-  async selectAll() {
-    const query = 'SELECT * FROM tblExternalLinks ' +
-      'LEFT JOIN tblEvidenceLinkJoin ON tblExternalLinks.LinkID = tblEvidenceLinkJoin.LinkID';
-
-    var results = await this.executeQuery(query);
-    this.externalLinksList.push(results);
-    return results;
   }
 
   getExternalLinksList() {

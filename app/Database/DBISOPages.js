@@ -4,14 +4,6 @@ class DBISOPages extends Database {
   constructor(config) {
     super(config);
     this.isoPagesList = [];
-    this.selectAll();
-  }
-
-  async selectAll() {
-    const query = 'SELECT * FROM TblISOPages';
-    var results = await this.executeQuery(query);
-    this.isoPagesList.push(results);
-    return results;
   }
 
   async addISOPages(isoPage) {

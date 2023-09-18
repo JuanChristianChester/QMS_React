@@ -4,20 +4,6 @@ class DBAuditFeedback extends Database {
   constructor(config) {
     super(config);
     this.auditFeedbacklst = [];
-    this.selectAll();
-  }
-
-
-  async selectAll() {
-    var query = 'SELECT * FROM tblAuditFeedback';
-    var results = await this.executeQuery(query);
-
-    // convert the results into JSON
-    results = JSON.parse(JSON.stringify(results));
-    
-    this.auditFeedbacklst.push(results);
-
-    return results;
   }
 
   async addFeedback(body, qmsID) {

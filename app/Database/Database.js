@@ -16,6 +16,28 @@ class Database {
     this.pool = mysql.createPool(this.config);
   }
 
+  async selectAll(tableName) {
+    if (!this.isValidTableName(tableName)) {
+      throw new Error('Invalid table name');
+    }
+
+    const query = `SELECT * FROM ${tableName};`;
+    try {
+      const results = await this.executeQuery(query);
+      return results;
+    } catch (error) {
+      console.error('Error in SELECT query:', error);
+      return [];
+    }
+  }
+
+  async isValidTableName(tableName) {
+    // Implement your own validation logic here.
+    // For example, you can check if tableName only contains alphanumeric characters and underscores.
+    const validTableNameRegex = /^[A-Za-z0-9_]+$/;
+    return validTableNameRegex.test(tableName);
+  }
+
   async executeQuery(query, params) {
     try {
       const [results, fields] = await this.pool.query(query, params);

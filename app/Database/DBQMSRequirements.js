@@ -5,18 +5,8 @@ class DBQMSRequirement extends Database {
     super(connection);
     this.connection = connection;
     this.qmsRequirementList = [];
-    this.selectAll();
   }
-
-  async selectAll() {
-    const query = 'SELECT * FROM tblQMSRequirements';
-    var results = await this.executeQuery(query);
-    this.qmsRequirementList.push(results);
-    //turn results into a JSON object
-    results = JSON.parse(JSON.stringify(results));
-    return results;
-  }
-
+  
   getQMSRequirementList() {
     return this.qmsRequirementList;
   }
