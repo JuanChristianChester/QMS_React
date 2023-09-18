@@ -1,10 +1,10 @@
-import React from 'react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import Dropzone from '../Pages/Elements/FileDialouge';
+import Page from './Page';
 
-class InputEvidence extends React.Component {
+class InputEvidence extends Page {
   constructor(props) {
     super(props);
     this.state = {

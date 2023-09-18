@@ -1,21 +1,16 @@
-import React from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import { Typography } from '@mui/material';
+import Page from './Page';
 
-class ViewPDCAStages extends React.Component {
+class ViewPDCAStages extends Page{
   constructor(props) {
     super(props);
     this.state = { apiResponse: [] };
-    this.callAPI();
+    this.callAPI("http://localhost:9000/PDCAStages");
   }
   handlePDCAStageSelectionChange = () => {
     // Handle the selection change event of pdcaTable
   };
-  callAPI() {
-    fetch("http://localhost:9000/PDCAStages")
-      .then(res => res.json())
-      .then(res => this.setState({ apiResponse: res }));
-  }
   render() {
     const pdcaStageColumns = [
       {field: 'id' , headerName: 'PDCA ID', width: 200},

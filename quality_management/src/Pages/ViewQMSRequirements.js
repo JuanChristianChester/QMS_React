@@ -1,18 +1,12 @@
-import React from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import { Typography } from '@mui/material';
+import Page from './Page';
 
-class ViewQMSRequirements extends React.Component {
+class ViewQMSRequirements extends Page {
   constructor(props) {
     super(props);
     this.state = { apiResponse: [] };
-    this.callAPI();
-  }
-
-  callAPI() {
-    fetch("http://localhost:9000/QMSRequirements")
-      .then(res => res.json())
-      .then(res => this.setState({ apiResponse: res }));
+    this.callAPI("http://localhost:9000/QMSRequirements");
   }
 
   render() {

@@ -1,11 +1,11 @@
-import React from 'react';
 import Box from '@mui/material/Box';
 import { DataGrid } from '@mui/x-data-grid';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Dropzone from '../Pages/Elements/FileDialouge';
+import Page from './Page';
 
-class EditEvidence extends React.Component {
+class EditEvidence extends Page {
   constructor(props) {
     super(props);
     this.state = {
@@ -33,15 +33,8 @@ class EditEvidence extends React.Component {
       ],
       apiresponse: [],
     };
-    this.callAPI();
+    this.callAPI("http://localhost:9000/Evidence");
   }
-
-  callAPI() {
-    fetch("http://localhost:9000/Evidence")
-      .then(res => res.json())
-      .then(res => this.setState({ apiresponse: res }));
-  }
-
   
   render() {
     var json = this.state.apiresponse;

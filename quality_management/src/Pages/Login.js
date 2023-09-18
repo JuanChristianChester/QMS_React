@@ -17,7 +17,7 @@ class Login extends Component {
   };
 
   handleLogin = () => {
-    const { username, password } = this.state;
+    const { username } = this.state;
     // Here you can add logic to authenticate the user
     console.log('Logging in with username:', username);
   };

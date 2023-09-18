@@ -1,23 +1,17 @@
-import React from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 // import tblAuditFeedback from '../Model/tblAuditFeedback';
 import { Typography } from '@mui/material';
+import Page from './Page';
 
-class ViewFeedback extends React.Component {
+class ViewFeedback extends Page {
   constructor(props) {
     super(props);
     this.state = { apiResponse: [] };
-    this.callAPI();
+    this.callAPI("http://localhost:9000/AuditFeedback");
   }
   handleFeedbackTableSelectionChange = () => {
     // Handle the selection change event of FeedbackTable
   };
-
-  callAPI() {
-    fetch("http://localhost:9000/AuditFeedback")
-      .then(res => res.json())
-      .then(res => this.setState({ apiResponse: res }));
-  }
 
   render() {
     const feedbackColumns = [

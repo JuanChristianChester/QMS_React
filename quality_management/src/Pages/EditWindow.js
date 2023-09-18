@@ -1,6 +1,6 @@
-import React from 'react';
+import Page from "./Page";
 
-class EditWindow extends React.Component {
+class EditWindow extends Page{
   constructor(props) {
     super(props);
     this.state = {

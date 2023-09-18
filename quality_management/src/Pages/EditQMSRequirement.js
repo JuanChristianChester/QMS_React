@@ -1,8 +1,8 @@
-import React from 'react';
 import Box from '@mui/material/Box';
 import { DataGrid } from '@mui/x-data-grid';
 import Button from '@mui/material/Button';
-class EditQMSRequirements extends React.Component {
+import Page from './Page';
+class EditQMSRequirements extends Page {
   constructor(props) {
     super(props);
     this.state = {
@@ -15,13 +15,7 @@ class EditQMSRequirements extends React.Component {
       ],
       apiResponse: []
     };
-    this.callAPI();
-  }
-  
-  callAPI() {
-    fetch("http://localhost:9000/QMSRequirements")
-      .then(res => res.json())
-      .then(res => this.setState({ apiResponse: res }));
+    this.callAPI("http://localhost:9000/QMSRequirements");
   }
 
   handleButtonSaveClick = () => {

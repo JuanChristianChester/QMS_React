@@ -1,7 +1,7 @@
-import React from 'react';
-import OverviewFlow from './Elements/OverviewFlow';
+import OverviewFlow from './Elements/OverviewFlow'
+import Page from './Page';
 
-class EvidenceMenu extends React.Component {
+class EvidenceMenu extends Page {
   constructor(props) {
     super(props);
     this.state = { apiResponse: "" };

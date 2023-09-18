@@ -1,11 +1,11 @@
-import React from 'react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import { DataGrid } from '@mui/x-data-grid';
+import Page from './Page';
 
-class RecordFeedbackResponse extends React.Component {
+class RecordFeedbackResponse extends Page {
   constructor(props) {
     super(props);
     this.state = {

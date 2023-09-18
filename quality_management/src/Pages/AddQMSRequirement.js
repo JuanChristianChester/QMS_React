@@ -1,8 +1,8 @@
-import React from 'react';
 import Box from '@mui/material/Box';
 import { DataGrid } from '@mui/x-data-grid';
 import Button from '@mui/material/Button';
-class AddQMSRequirements extends React.Component {
+import Page from './Page';
+class AddQMSRequirements extends Page{
   constructor(props) {
     super(props);
     this.state = {
@@ -15,18 +15,8 @@ class AddQMSRequirements extends React.Component {
       ],
       apiResponse: []
     };
-    this.callAPI();
+    this.callAPI("http://localhost:9000/QMSRequirements");
   }
-  
-  callAPI() {
-    fetch("http://localhost:9000/QMSRequirements")
-      .then(res => res.json())
-      .then(res => this.setState({ apiResponse: res }));
-  }
-
-
-  // postAPI() {
-  //   post("http://localhost:9000/QMSRequirements", this.state.apiResponse)
   
   handleButtonAddClick = () => {
     // Handle the "Add" Button click event

@@ -1,7 +1,7 @@
-import React from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import { Typography } from '@mui/material';
-class ViewFeedbackDetails extends React.Component {
+import Page from './Page';
+class ViewFeedbackDetails extends Page {
   render() {
     const qmsRequirementsColumns = [
       { field: 'id', headerName: 'ID', width: 90 },

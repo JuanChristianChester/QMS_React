@@ -1,4 +1,3 @@
-import React from 'react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
@@ -9,8 +8,9 @@ import MenuItem from '@mui/material/MenuItem';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
+import Page from './Page';
 
-class RecordFeedback extends React.Component {
+class RecordFeedback extends Page {
   constructor(props) {
     super(props);
     this.state = {
