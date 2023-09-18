@@ -23,7 +23,8 @@ class Database {
 
     const query = `SELECT * FROM ${tableName};`;
     try {
-      const results = await this.executeQuery(query);
+      var results = await this.executeQuery(query);
+      results = JSON.parse(JSON.stringify(results));
       return results;
     } catch (error) {
       console.error('Error in SELECT query:', error);
