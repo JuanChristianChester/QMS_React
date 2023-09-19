@@ -7,10 +7,12 @@ class DBAuditFeedback extends Database {
   }
 
   async addFeedback(body, qmsID) {
+    this.auditFeedbacklst = await this.selectAll('tblAuditFeedback');
     const auditID = this.auditFeedbacklst.length + 1;
     this.auditFeedbacklst.push({ auditID, auditDetails: body, feedbackResponse: '' });
-
+1
     const insertQuery = 'INSERT INTO tblAuditFeedback (AuditID, AuditDetails) VALUES (?, ?)';
+    console.log('Adding audit feedback:', auditID, body);
     try {
       await this.executeQuery(insertQuery, [auditID, body]);
       this.addQMSJoin(qmsID);
@@ -24,6 +26,7 @@ class DBAuditFeedback extends Database {
   async addQMSJoin(qmsIDList) {
     const insertQuery = 'INSERT INTO tblQMSJoinFeedback (AuditID, QMSID) VALUES (?, ?)';
     const auditID = this.auditFeedbacklst.length;
+    console.log('Adding QMS join:', auditID, qmsIDList);
     for (const qmsID of qmsIDList) {
       try {
         await this.executeQuery(insertQuery, [auditID, qmsID]);

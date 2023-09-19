@@ -15,7 +15,7 @@ class EditQMSRequirements extends Page {
       ],
       apiResponse: []
     };
-    this.callAPI("http://localhost:9000/QMSRequirements");
+    this.callAPI("http://localhost:9000/select/QMSRequirements");
   }
 
   handleButtonSaveClick = () => {

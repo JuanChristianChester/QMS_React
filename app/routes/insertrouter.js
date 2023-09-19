@@ -4,10 +4,11 @@ const DBQMSRequirements = require('../Database/DBQMSRequirements');
 const DBPDCAStages = require('../Database/DBPDCAStage');
 
 function selectRouter(app) {
-  app.use('/insert/:table', async (req, res, next) => {
+  app.use('/insert/:table/:json', async (req, res, next) => {
     const tableName = req.params.table;
+    const json = req.params.json;
     try {
-      const data = await handleDatabaseOperation(tableName);
+      const data = await handleDatabaseOperation(json, tableName);
       res.json(data);
     } catch (error) {
       console.error('Error:', error);
@@ -16,13 +17,15 @@ function selectRouter(app) {
   });
 }
 
-async function handleDatabaseOperation(tableName) {
+async function handleDatabaseOperation(jsonstring, tableName) {
   var success = false;
   switch (tableName) {
     case 'AuditFeedback':
+        var json = JSON.parse(jsonstring);
         const db = new DBAuditFeedback();
-        success = db.addFeedback();
-        return await performDatabaseOperation(DBAuditFeedback, 'tblAuditFeedback');
+        console.log()
+        success = db.addFeedback(json.body, json.qmsID);
+        return await performDatabaseOperation(DBAuditFeedback, 'tblAuditFeedback', success);
     case 'QMSRequirements':
         return await performDatabaseOperation(DBQMSRequirements, 'tblQMSRequirements');
     case 'Evidence':

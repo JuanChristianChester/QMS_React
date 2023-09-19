@@ -6,7 +6,7 @@ class ViewEvidence extends Page {
   constructor(props) {
     super(props);
     this.state = { apiResponse: [] };
-    this.callAPI("http://localhost:9000/Evidence");
+    this.callAPI("http://localhost:9000/select/Evidence");
   }
 
   render() {
