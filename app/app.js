@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var selectRouter = require('./routes/selectrouter');
+var insertRouter = require('./routes/insertrouter');
 
 
 var cors = require("cors");
@@ -22,8 +23,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-param = "auditFeedback"
 selectRouter(app);
+insertRouter(app);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

@@ -14,8 +14,10 @@ class DBAuditFeedback extends Database {
     try {
       await this.executeQuery(insertQuery, [auditID, body]);
       this.addQMSJoin(qmsID);
+      return true;
     } catch (error) {
       console.error('Error adding audit feedback:', error);
+      return false;
     }
   }
 

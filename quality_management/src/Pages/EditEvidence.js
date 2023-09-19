@@ -11,38 +11,23 @@ class EditEvidence extends Page {
     this.state = {
       columns: [
         { field: 'id', headerName: 'ID', width: 90 },
-        {
-          field: 'AssociatedFiles',
-          headerName: 'Associated Files',
-          width: 150,
-          editable: true,
-        },
-        {
-          field: 'Body',
-          headerName: 'Body',
-          width: 150,
-          editable: true,
-        },
-        {
-          field: 'PDCASectionID',
-          headerName: 'PDCA Section ID',
-          type: 'number',
-          width: 110,
-          editable: true,
-        },
+        { field: 'pdcaSectionID', headerName: 'PDCA Section ID', width: 200 },
+        { field: 'evidenceDate', headerName: 'Evidence Date', width: 200 },
+        { field: 'body', headerName: 'Body', width: 200 },
       ],
-      apiresponse: [],
+      apiResponse: [],
     };
     this.callAPI("http://localhost:9000/Evidence");
   }
   
   render() {
-    var json = this.state.apiresponse;
+    var json = this.state.apiResponse;
+    console.log(json);
     //iterate over json and add to rows
     const evidenceRows = [];
-
     for (var i = 0; i < json.length; i++) {
-      evidenceRows.push({ id: json[i].EvidenceID, AssociatedFiles: json[i].AssociatedFiles, Body: json[i].Body, PDCASectionID: json[i].PDCASectionID });
+      evidenceRows.push({ id: json[i].EvidenceID, pdcaSectionID: json[i].PDCASectionID, evidenceDate: json[i].EvidenceDate, body: json[i].Body });
+      console.log(json[i]);
     }
     return (
       <div className="content">

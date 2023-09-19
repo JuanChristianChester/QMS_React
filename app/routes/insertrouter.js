@@ -4,7 +4,7 @@ const DBQMSRequirements = require('../Database/DBQMSRequirements');
 const DBPDCAStages = require('../Database/DBPDCAStage');
 
 function selectRouter(app) {
-  app.use('/select/:table', async (req, res, next) => {
+  app.use('/insert/:table', async (req, res, next) => {
     const tableName = req.params.table;
     try {
       const data = await handleDatabaseOperation(tableName);
@@ -17,21 +17,26 @@ function selectRouter(app) {
 }
 
 async function handleDatabaseOperation(tableName) {
+  var success = false;
   switch (tableName) {
     case 'AuditFeedback':
-      return await performDatabaseOperation(DBAuditFeedback, 'tblAuditFeedback');
+        const db = new DBAuditFeedback();
+        success = db.addFeedback();
+        return await performDatabaseOperation(DBAuditFeedback, 'tblAuditFeedback');
     case 'QMSRequirements':
-      return await performDatabaseOperation(DBQMSRequirements, 'tblQMSRequirements');
+        return await performDatabaseOperation(DBQMSRequirements, 'tblQMSRequirements');
     case 'Evidence':
-      return await performDatabaseOperation(DBEvidence, 'tblEvidence');
+        return await performDatabaseOperation(DBEvidence, 'tblEvidence');
     case 'PDCAStages':
-      return await performDatabaseOperation(DBPDCAStages, 'tblPDCAStage');
+        return await performDatabaseOperation(DBPDCAStages, 'tblPDCAStage');
   }
 }
 
-async function performDatabaseOperation(DatabaseClass, tableName) {
-  const db = new DatabaseClass();
-  return await db.selectAll(tableName);
+async function performDatabaseOperation(DatabaseClass, tableName, success) {
+  if (success) {
+    return {"response": "performed on " + tableName};
+  }
+  return {"response": "not performed on " + tableName};
 }
 
 module.exports = selectRouter;

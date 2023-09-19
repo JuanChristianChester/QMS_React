@@ -10,7 +10,6 @@ class ViewEvidence extends Page {
   }
 
   render() {
-    console.log(this.state);
     const evidenceColumns = [
       { field: 'id', headerName: 'ID', width: 90 },
       { field: 'pdcaSectionID', headerName: 'PDCA Section ID', width: 200 },
