@@ -1,20 +1,20 @@
-const Database = require('./Database');
+const Database = require('./Database')
 
 class DBPDCAStage extends Database {
   constructor(config) {
-    super(config);
-    this.pdcaStageList = [];
+    super(config)
+    this.pdcaStageList = []
   }
 
   async addPDCAStage(pdcaStage) {
-    const insertQuery = 'INSERT INTO tblPDCAStage (PDCAID, PDCAStage) VALUES (?, ?)';
+    const insertQuery = 'INSERT INTO tblPDCAStage (PDCAID, PDCAStage) VALUES (?, ?)'
     try {
-      await this.executeQuery(insertQuery, [pdcaStage.id, pdcaStage.stage]);
-      this.pdcaStageList.push(pdcaStage);
+      await this.executeQuery(insertQuery, [pdcaStage.id, pdcaStage.stage])
+      this.pdcaStageList.push(pdcaStage)
     } catch (error) {
-      console.error('Error adding PDCA stage:', error);
+      console.error('Error adding PDCA stage:', error)
     }
   }
 }
 
-module.exports = DBPDCAStage;
+module.exports = DBPDCAStage

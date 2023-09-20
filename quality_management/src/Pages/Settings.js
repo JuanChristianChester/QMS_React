@@ -1,33 +1,33 @@
-import React, { Component } from 'react';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Switch from '@mui/material/Switch';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormGroup from '@mui/material/FormGroup';
-import TextField from '@mui/material/TextField';
+import React, { Component } from 'react'
+import Box from '@mui/material/Box'
+import Button from '@mui/material/Button'
+import Switch from '@mui/material/Switch'
+import FormControlLabel from '@mui/material/FormControlLabel'
+import FormGroup from '@mui/material/FormGroup'
+import TextField from '@mui/material/TextField'
 
 class Settings extends Component {
   state = {
     darkMode: false,
     setting1: '',
     setting2: '',
-    setting3: '',
-  };
+    setting3: ''
+  }
 
   handleDarkModeToggle = () => {
     this.setState((prevState) => ({
-      darkMode: !prevState.darkMode,
-    }));
-  };
+      darkMode: !prevState.darkMode
+    }))
+  }
 
   handleSettingChange = (settingName) => (event) => {
     this.setState({
-      [settingName]: event.target.value,
-    });
-  };
+      [settingName]: event.target.value
+    })
+  }
 
-  render() {
-    const { darkMode, setting1, setting2, setting3 } = this.state;
+  render () {
+    const { darkMode, setting1, setting2, setting3 } = this.state
 
     return (
       <div className="content">
@@ -76,8 +76,8 @@ class Settings extends Component {
           </Button>
         </Box>
       </div>
-    );
+    )
   }
 }
 
-export default Settings;
+export default Settings

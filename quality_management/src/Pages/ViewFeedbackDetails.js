@@ -1,16 +1,16 @@
-import { DataGrid } from '@mui/x-data-grid';
-import { Typography } from '@mui/material';
-import Page from './Page';
+import { DataGrid } from '@mui/x-data-grid'
+import { Typography } from '@mui/material'
+import Page from './Page'
 class ViewFeedbackDetails extends Page {
-  render() {
+  render () {
     const qmsRequirementsColumns = [
-      { field: 'id', headerName: 'ID', width: 90 },
+      { field: 'id', headerName: 'ID', width: 90 }
       // Add more columns as needed
-    ];
+    ]
 
     const qmsRequirementsRows = [
       // Provide QMS requirements data
-    ];
+    ]
 
     return (
       <div className="content">
@@ -29,8 +29,8 @@ class ViewFeedbackDetails extends Page {
           disableColumnMenu
         />
       </div>
-    );
+    )
   }
 }
 
-export default ViewFeedbackDetails;
+export default ViewFeedbackDetails

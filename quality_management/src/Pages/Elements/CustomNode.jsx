@@ -1,31 +1,31 @@
-import React, { memo } from 'react';
-import { Handle, useReactFlow, useStoreApi, Position } from 'reactflow';
+import React, { memo } from 'react'
+import { Handle, useReactFlow, useStoreApi, Position } from 'reactflow'
 
 const options = [
   {
     value: 'smoothstep',
-    label: 'Smoothstep',
+    label: 'Smoothstep'
   },
   {
     value: 'step',
-    label: 'Step',
+    label: 'Step'
   },
   {
     value: 'default',
-    label: 'Bezier (default)',
+    label: 'Bezier (default)'
   },
   {
     value: 'straight',
-    label: 'Straight',
-  },
-];
+    label: 'Straight'
+  }
+]
 
-function Select({ value, handleId, nodeId }) {
-  const { setNodes } = useReactFlow();
-  const store = useStoreApi();
+function Select ({ value, handleId, nodeId }) {
+  const { setNodes } = useReactFlow()
+  const store = useStoreApi()
 
   const onChange = (evt) => {
-    const { nodeInternals } = store.getState();
+    const { nodeInternals } = store.getState()
     setNodes(
       Array.from(nodeInternals.values()).map((node) => {
         if (node.id === nodeId) {
@@ -33,15 +33,15 @@ function Select({ value, handleId, nodeId }) {
             ...node.data,
             selects: {
               ...node.data.selects,
-              [handleId]: evt.target.value,
-            },
-          };
+              [handleId]: evt.target.value
+            }
+          }
         }
 
-        return node;
+        return node
       })
-    );
-  };
+    )
+  }
 
   return (
     <div className="custom-node__select">
@@ -55,10 +55,10 @@ function Select({ value, handleId, nodeId }) {
       </select>
       <Handle type="source" position={Position.Right} id={handleId} />
     </div>
-  );
+  )
 }
 
-function CustomNode({ id, data }) {
+function CustomNode ({ id, data }) {
   return (
     <>
       <div className="custom-node__header">
@@ -70,7 +70,7 @@ function CustomNode({ id, data }) {
         ))}
       </div>
     </>
-  );
+  )
 }
 
-export default memo(CustomNode);
+export default memo(CustomNode)

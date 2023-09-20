@@ -1,18 +1,18 @@
-import ExternalLink from './ExternalLink';
+import ExternalLink from './ExternalLink'
 
 class tblExternalLinks {
-  constructor() {
-    this.externalLinksList = [];
+  constructor () {
+    this.externalLinksList = []
 
-    this.initializeExternalLinksList();
+    this.initializeExternalLinksList()
   }
 
-  async initializeExternalLinksList() {
+  async initializeExternalLinksList () {
     for (const item of await this.db.getExternalLinksList()) {
-      const externalLink = new ExternalLink(item.LinkID, item.Link);
-      this.externalLinksList.push(externalLink);
+      const externalLink = new ExternalLink(item.LinkID, item.Link)
+      this.externalLinksList.push(externalLink)
     }
   }
 }
 
-export default tblExternalLinks;
+export default tblExternalLinks

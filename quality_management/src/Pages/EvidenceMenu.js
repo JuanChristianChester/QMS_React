@@ -1,13 +1,14 @@
+import React from 'react'
 import OverviewFlow from './Elements/OverviewFlow'
-import Page from './Page';
+import Page from './Page'
 
 class EvidenceMenu extends Page {
-  constructor(props) {
-    super(props);
-    this.state = { apiResponse: "" };
+  constructor (props) {
+    super(props)
+    this.state = { apiResponse: '' }
   }
 
-  render() {
+  render () {
     return (
       <div className='flowchart-content'>
         <div className='flowchart-title'>
@@ -16,8 +17,8 @@ class EvidenceMenu extends Page {
 
         <OverviewFlow />
       </div>
-    );
+    )
   }
 }
 
-export default EvidenceMenu;
+export default EvidenceMenu

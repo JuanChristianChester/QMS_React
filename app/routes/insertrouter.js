@@ -1,45 +1,45 @@
-const DBAuditFeedback = require('../Database/DBAuditFeedback');
-const DBEvidence = require('../Database/DBEvidence');
-const DBQMSRequirements = require('../Database/DBQMSRequirements');
-const DBPDCAStages = require('../Database/DBPDCAStage');
+const DBAuditFeedback = require('../Database/DBAuditFeedback')
+const DBEvidence = require('../Database/DBEvidence')
+const DBQMSRequirements = require('../Database/DBQMSRequirements')
+const DBPDCAStages = require('../Database/DBPDCAStage')
 
 function selectRouter(app) {
   app.use('/insert/:table/:json', async (req, res, next) => {
-    const tableName = req.params.table;
-    const json = req.params.json;
+    const tableName = req.params.table
+    const json = req.params.json
     try {
-      const data = await handleDatabaseOperation(json, tableName);
-      res.json(data);
+      const data = await handleDatabaseOperation(json, tableName)
+      res.json(data)
     } catch (error) {
-      console.error('Error:', error);
-      res.json({ 'Error': error.message });
+      console.error('Error:', error)
+      res.json({ 'Error': error.message })
     }
-  });
+  })
 }
 
-async function handleDatabaseOperation(jsonstring, tableName) {
-  var success = false;
+function handleDatabaseOperation(jsonstring, tableName) {
+  var success = false
+  var json = JSON.parse(jsonstring)
+  var db
   switch (tableName) {
     case 'AuditFeedback':
-        var json = JSON.parse(jsonstring);
-        const db = new DBAuditFeedback();
-        console.log()
-        success = db.addFeedback(json.body, json.qmsID);
-        return await performDatabaseOperation(DBAuditFeedback, 'tblAuditFeedback', success);
+      db = new DBAuditFeedback()
+      success = db.addFeedback(json.body, json.qmsID)
+      break
     case 'QMSRequirements':
-        return await performDatabaseOperation(DBQMSRequirements, 'tblQMSRequirements');
+      db = new DBQMSRequirements()
+      success = db.addQMSRequirement(json.title, json.description, json.pdcaStage)
+      break
     case 'Evidence':
-        return await performDatabaseOperation(DBEvidence, 'tblEvidence');
+      db = new DBEvidence()
+      success = db.addEvidence(json.title, json.description, json.qmsID)
+      break
     case 'PDCAStages':
-        return await performDatabaseOperation(DBPDCAStages, 'tblPDCAStage');
+      db = new DBPDCAStages()
+      success = db.addPDCAStage(json.title, json.description)
+      break
   }
+  return {"response": success ? "insert complete on " + tableName : "insert failed on " + tableName}
 }
 
-async function performDatabaseOperation(DatabaseClass, tableName, success) {
-  if (success) {
-    return {"response": "performed on " + tableName};
-  }
-  return {"response": "not performed on " + tableName};
-}
-
-module.exports = selectRouter;
+module.exports = selectRouter

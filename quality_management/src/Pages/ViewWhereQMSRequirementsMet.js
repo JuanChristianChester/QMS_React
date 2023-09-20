@@ -1,16 +1,17 @@
-import { Typography } from '@mui/material';
-import { DataGrid } from '@mui/x-data-grid';
-import Page from './Page';
+import React from 'react'
+import { Typography } from '@mui/material'
+import { DataGrid } from '@mui/x-data-grid'
+import Page from './Page'
 class ViewWhereQMSRequirementsMet extends Page {
-  render() {
+  render () {
     const qmsRequirementsColumns = [
-      { field: 'id', headerName: 'ID', width: 90 },
+      { field: 'id', headerName: 'ID', width: 90 }
       // Add more columns as needed
-    ];
+    ]
 
     const qmsRequirementsRows = [
       // Provide QMS requirements data
-    ];
+    ]
     return (
       <div className="content">
         <Typography variant="h4" gutterBottom> View Where QMS Requirements Met </Typography>
@@ -21,8 +22,8 @@ class ViewWhereQMSRequirementsMet extends Page {
           disableColumnMenu
         />
       </div>
-    );
+    )
   }
 }
 
-export default ViewWhereQMSRequirementsMet;
+export default ViewWhereQMSRequirementsMet

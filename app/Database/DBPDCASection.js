@@ -1,20 +1,20 @@
-const Database = require('./Database');
+const Database = require('./Database')
 
 class DBPDCASection extends Database {
   constructor(config) {
-    super(config);
-    this.pdcaSectionList = [];
+    super(config)
+    this.pdcaSectionList = []
   }
 
   async addPDCASection(pdcaSection) {
-    const insertQuery = 'INSERT INTO tblPDCASection (PDCASectionID, PDCAID, Section) VALUES (?, ?, ?)';
+    const insertQuery = 'INSERT INTO tblPDCASection (PDCASectionID, PDCAID, Section) VALUES (?, ?, ?)'
     try {
-      await this.executeQuery(insertQuery, [pdcaSection.sectionID, pdcaSection.pdcaID, pdcaSection.section]);
-      this.pdcaSectionList.push(pdcaSection);
+      await this.executeQuery(insertQuery, [pdcaSection.sectionID, pdcaSection.pdcaID, pdcaSection.section])
+      this.pdcaSectionList.push(pdcaSection)
     } catch (error) {
-      console.error('Error adding PDCA section:', error);
+      console.error('Error adding PDCA section:', error)
     }
   }
 }
 
-module.exports = DBPDCASection;
+module.exports = DBPDCASection

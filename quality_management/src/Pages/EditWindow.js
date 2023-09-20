@@ -1,20 +1,21 @@
-import Page from "./Page";
+import React from 'react'
+import Page from './Page'
 
-class EditWindow extends Page{
-  constructor(props) {
-    super(props);
+class EditWindow extends Page {
+  constructor (props) {
+    super(props)
     this.state = {
       // Initialize state variables if needed
-    };
+    }
   }
 
-  render() {
+  render () {
     return (
-        <div className='content'>
-            <h2>EditWindow</h2>
-        </div>
-    );
+      <div className='content'>
+        <h2>EditWindow</h2>
+      </div>
+    )
   }
 }
 
-export default EditWindow;
+export default EditWindow

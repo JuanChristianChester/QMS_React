@@ -1,29 +1,29 @@
-const Database = require('./Database');
+const Database = require('./Database')
 
 class DBEvidence extends Database {
   constructor(config) {
-    super(config);
-    this.evidenceList = [];
+    super(config)
+    this.evidenceList = []
   }
 
   async addEvidence(body, pdcaSectionID, evidenceDate) {
-    const evidenceID = this.evidenceList.length + 1;
-    this.evidenceList.push({ evidenceID, pdcaSectionID, evidenceDate, body });
+    const evidenceID = this.evidenceList.length + 1
+    this.evidenceList.push({ evidenceID, pdcaSectionID, evidenceDate, body })
 
-    const insertQuery = 'INSERT INTO tblEvidence (EvidenceID, PDCASectionID, EvidenceDate, Body) VALUES (?, ?, ?, ?)';
+    const insertQuery = 'INSERT INTO tblEvidence (EvidenceID, PDCASectionID, EvidenceDate, Body) VALUES (?, ?, ?, ?)'
     try {
-      await this.executeQuery(insertQuery, [evidenceID, pdcaSectionID, evidenceDate, body]);
+      await this.executeQuery(insertQuery, [evidenceID, pdcaSectionID, evidenceDate, body])
     } catch (error) {
-      console.error('Error adding evidence:', error);
+      console.error('Error adding evidence:', error)
     }
   }
 
   async updateEvidence(body, pdcaSectionID, evidenceID) {
-    const updateQuery = 'UPDATE tblEvidence SET Body = ?, PDCASectionID = ? WHERE EvidenceID = ?';
+    const updateQuery = 'UPDATE tblEvidence SET Body = ?, PDCASectionID = ? WHERE EvidenceID = ?'
     try {
-      await this.executeQuery(updateQuery, [body, pdcaSectionID, evidenceID]);
+      await this.executeQuery(updateQuery, [body, pdcaSectionID, evidenceID])
     } catch (error) {
-      console.error('Error updating evidence:', error);
+      console.error('Error updating evidence:', error)
     }
   }
 
@@ -32,13 +32,13 @@ class DBEvidence extends Database {
     // Similar logic for deleting evidence links
     // ...
 
-    const deleteQuery = 'DELETE FROM tblEvidence WHERE EvidenceID = ?';
+    const deleteQuery = 'DELETE FROM tblEvidence WHERE EvidenceID = ?'
     try {
-      await this.executeQuery(deleteQuery, [evidenceID]);
+      await this.executeQuery(deleteQuery, [evidenceID])
     } catch (error) {
-      console.error('Error deleting evidence:', error);
+      console.error('Error deleting evidence:', error)
     }
   }
 }
 
-module.exports = DBEvidence;
+module.exports = DBEvidence

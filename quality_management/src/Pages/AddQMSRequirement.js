@@ -1,42 +1,43 @@
-import Box from '@mui/material/Box';
-import { DataGrid } from '@mui/x-data-grid';
-import Button from '@mui/material/Button';
-import Page from './Page';
-class AddQMSRequirements extends Page{
-  constructor(props) {
-    super(props);
+import React from 'react'
+import Box from '@mui/material/Box'
+import { DataGrid } from '@mui/x-data-grid'
+import Button from '@mui/material/Button'
+import Page from './Page'
+class AddQMSRequirements extends Page {
+  constructor (props) {
+    super(props)
     this.state = {
       columns: [
         { field: 'id', headerName: 'QMS ID', width: 90 },
         { field: 'pageID', headerName: 'Page ID', width: 200 },
         { field: 'qmsSection', headerName: 'QMS Section', width: 200 },
         { field: 'description', headerName: 'Description', width: 200 },
-        { field: 'sectionDescription', headerName: 'Section Description', width: 200 },
+        { field: 'sectionDescription', headerName: 'Section Description', width: 200 }
       ],
       apiResponse: []
-    };
-    this.callAPI("http://localhost:9000/select/QMSRequirements");
+    }
+    this.callAPI('http://localhost:9000/select/QMSRequirements')
   }
-  
+
   handleButtonAddClick = () => {
     // Handle the "Add" Button click event
-  };
+  }
 
   handleButtonEditClick = () => {
     // Handle the "Edit Requirements" Button click event
-  };
+  }
 
   handleButtonSaveClick = () => {
     // Handle the "Save" Button click event
-  };
-  
-  render() {
-    var json = this.state.apiResponse;
-    //iterate over json and add to rows
-    const qmsRequirementsRows = [];
-    for (var i = 0; i < json.length; i++) {
-      console.log(json[i]);
-      qmsRequirementsRows.push({ id: json[i].QMSID, pageID: json[i].PageID, qmsSection: json[i].QMSSection, description: json[i].Description, sectionDescription: json[i].SectionDescription });
+  }
+
+  render () {
+    const json = this.state.apiResponse
+    // iterate over json and add to rows
+    const qmsRequirementsRows = []
+    for (let i = 0; i < json.length; i++) {
+      console.log(json[i])
+      qmsRequirementsRows.push({ id: json[i].QMSID, pageID: json[i].PageID, qmsSection: json[i].QMSSection, description: json[i].Description, sectionDescription: json[i].SectionDescription })
     }
 
     return (
@@ -59,9 +60,9 @@ class AddQMSRequirements extends Page{
             initialState={{
               pagination: {
                 paginationModel: {
-                  pageSize: 5,
-                },
-              },
+                  pageSize: 5
+                }
+              }
             }}
             pageSizeOptions={[5]}
             checkboxSelection
@@ -70,8 +71,8 @@ class AddQMSRequirements extends Page{
         </Box>
         <Button onClick={this.handleButtonSaveClick}>Save</Button>
       </div>
-    );
+    )
   }
 }
 
-export default AddQMSRequirements;
+export default AddQMSRequirements

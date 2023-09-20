@@ -1,25 +1,26 @@
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import Typography from '@mui/material/Typography';
-import Dropzone from '../Pages/Elements/FileDialouge';
-import Page from './Page';
+import React from 'react'
+import Button from '@mui/material/Button'
+import TextField from '@mui/material/TextField'
+import Typography from '@mui/material/Typography'
+import Dropzone from '../Pages/Elements/FileDialouge'
+import Page from './Page'
 
 class InputEvidence extends Page {
-  constructor(props) {
-    super(props);
+  constructor (props) {
+    super(props)
     this.state = {
       columns: [
         { field: 'id', headerName: 'ID', width: 90 },
-        { field: 'AssociatedFile', headerName: 'File Path', width: 150 },
+        { field: 'AssociatedFile', headerName: 'File Path', width: 150 }
       ]
-    };
+    }
   }
 
   handleSaveClick = () => {
     // Handle the "Save" button click event
-  };
+  }
 
-  render() {
+  render () {
     return (
       <div className="content">
         <Typography variant="h5">Input Evidence - Goods Inwards</Typography>
@@ -43,8 +44,8 @@ class InputEvidence extends Page {
         <Dropzone />
         <Button onClick={this.handleSaveClick}>Save</Button>
       </div>
-    );
+    )
   }
 }
 
-export default InputEvidence;
+export default InputEvidence

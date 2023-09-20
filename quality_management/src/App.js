@@ -1,9 +1,9 @@
-import React from 'react';
-// import EditRequirementsPage from './EditRequirementsPage';
-// import DocumentPage from './DocumentPage';
+import Sidebar from './Sidebar'
+// import EditRequirementsPage from './EditRequirementsPage'
+// import DocumentPage from './DocumentPage'
 
-function App() {
-  return Sidebar();
+function App () {
+  return Sidebar()
 }
 
-export default App;
+export default App

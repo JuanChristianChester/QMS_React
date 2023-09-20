@@ -1,12 +1,12 @@
-import { DataGrid } from '@mui/x-data-grid';
-import { Typography } from '@mui/material';
-import Page from './Page';
+import { DataGrid } from '@mui/x-data-grid'
+import { Typography } from '@mui/material'
+import Page from './Page'
 
 class ViewQMSRequirements extends Page {
   constructor(props) {
-    super(props);
-    this.state = { apiResponse: [] };
-    this.callAPI("http://localhost:9000/select/QMSRequirements");
+    super(props)
+    this.state = { apiResponse: [] }
+    this.callAPI("http://localhost:9000/select/QMSRequirements")
   }
 
   render() {
@@ -17,13 +17,13 @@ class ViewQMSRequirements extends Page {
       { field: 'description', headerName: 'Description', width: 200 },
       { field: 'sectionDescription', headerName: 'Section Description', width: 200 },
       // Add more columns as needed
-    ];
+    ]
 
-    var json = this.state.apiResponse;
+    var json = this.state.apiResponse
     //iterate over json and add to rows
-    const qmsRequirementsRows = [];
+    const qmsRequirementsRows = []
     for (var i = 0; i < json.length; i++) {
-      qmsRequirementsRows.push({ id: json[i].QMSID, pageID: json[i].PageID, qmsSection: json[i].QMSSection, description: json[i].Description, sectionDescription: json[i].SectionDescription });
+      qmsRequirementsRows.push({ id: json[i].QMSID, pageID: json[i].PageID, qmsSection: json[i].QMSSection, description: json[i].Description, sectionDescription: json[i].SectionDescription })
     }
 
     return (
@@ -36,8 +36,8 @@ class ViewQMSRequirements extends Page {
           disableColumnMenu
         />
       </div>
-    );
+    )
   }
 }
 
-export default ViewQMSRequirements;
+export default ViewQMSRequirements

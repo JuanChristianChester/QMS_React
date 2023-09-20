@@ -1,9 +1,8 @@
 class PDCAStage {
-    constructor(ID, Stage) {
-      this.ID = ID;
-      this.Stage = Stage;
-    }
+  constructor (ID, Stage) {
+    this.ID = ID
+    this.Stage = Stage
   }
-  
-  export default PDCAStage;
-  
+}
+
+export default PDCAStage

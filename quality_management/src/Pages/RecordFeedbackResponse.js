@@ -1,32 +1,33 @@
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Grid';
-import { DataGrid } from '@mui/x-data-grid';
-import Page from './Page';
+import React from 'react'
+import Button from '@mui/material/Button'
+import TextField from '@mui/material/TextField'
+import Typography from '@mui/material/Typography'
+import Grid from '@mui/material/Grid'
+import { DataGrid } from '@mui/x-data-grid'
+import Page from './Page'
 
 class RecordFeedbackResponse extends Page {
-  constructor(props) {
-    super(props);
+  constructor (props) {
+    super(props)
     this.state = {
       feedbackDetails: '',
-      feedbackResponse: '',
-    };
+      feedbackResponse: ''
+    }
   }
 
   handleSaveClick = () => {
     // Handle the "Save" button click event
-  };
+  }
 
   handleAuditFeedbackSelectionChange = () => {
     // Handle the selection change event of AuditFeedbackDataGrid
-  };
+  }
 
-  render() {
+  render () {
     const auditFeedbackColumns = [
-      { field: 'id', headerName: 'ID', width: 90 },
+      { field: 'id', headerName: 'ID', width: 90 }
       // Add more columns as needed
-    ];
+    ]
 
     return (
       <div className="content">
@@ -72,8 +73,8 @@ class RecordFeedbackResponse extends Page {
           </Grid>
         </Grid>
       </div>
-    );
+    )
   }
 }
 
-export default RecordFeedbackResponse;
+export default RecordFeedbackResponse

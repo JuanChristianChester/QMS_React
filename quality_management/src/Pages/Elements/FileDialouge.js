@@ -1,22 +1,22 @@
-import React from 'react';
-import {useDropzone} from 'react-dropzone';
+import React from 'react'
+import { useDropzone } from 'react-dropzone'
 
-function Dropzone() {
-  const {getRootProps, getInputProps, open, acceptedFiles} = useDropzone({
+function Dropzone () {
+  const { getRootProps, getInputProps, open, acceptedFiles } = useDropzone({
     // Disable click and keydown behavior
     noClick: true,
     noKeyboard: true
-  });
+  })
 
   const files = acceptedFiles.map(file => (
     <li key={file.path}>
       {file.path} - {file.size} bytes
     </li>
-  ));
+  ))
 
   return (
     <div className="file_dialouge">
-      <div {...getRootProps({className: 'dropzone'})}>
+      <div {...getRootProps({ className: 'dropzone' })}>
         <input {...getInputProps()} />
         <p>Drag and drop evidence here</p>
         <button type="button" onClick={open}>
@@ -28,7 +28,7 @@ function Dropzone() {
         <ul>{files}</ul>
       </aside>
     </div>
-  );
+  )
 }
 
-export default Dropzone;
+export default Dropzone

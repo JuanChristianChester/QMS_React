@@ -1,29 +1,29 @@
-import React, { Component } from 'react';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import Typography from '@mui/material/Typography';
+import React, { Component } from 'react'
+import Box from '@mui/material/Box'
+import Button from '@mui/material/Button'
+import TextField from '@mui/material/TextField'
+import Typography from '@mui/material/Typography'
 
 class Login extends Component {
   state = {
     username: '',
     password: '',
-  };
+  }
 
   handleInputChange = (event, fieldName) => {
     this.setState({
       [fieldName]: event.target.value,
-    });
-  };
+    })
+  }
 
   handleLogin = () => {
-    const { username } = this.state;
+    const { username } = this.state
     // Here you can add logic to authenticate the user
-    console.log('Logging in with username:', username);
-  };
+    console.log('Logging in with username:', username)
+  }
 
   render() {
-    const { username, password } = this.state;
+    const { username, password } = this.state
 
     return (
       <div className="login-container">
@@ -54,8 +54,8 @@ class Login extends Component {
           </Button>
         </Box>
       </div>
-    );
+    )
   }
 }
 
-export default Login;
+export default Login

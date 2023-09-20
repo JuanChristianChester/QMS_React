@@ -1,10 +1,10 @@
-import Box from '@mui/material/Box';
-import { DataGrid } from '@mui/x-data-grid';
-import Button from '@mui/material/Button';
-import Page from './Page';
+import Box from '@mui/material/Box'
+import { DataGrid } from '@mui/x-data-grid'
+import Button from '@mui/material/Button'
+import Page from './Page'
 class EditQMSRequirements extends Page {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       columns: [
         { field: 'id', headerName: 'QMS ID', width: 90 },
@@ -14,25 +14,25 @@ class EditQMSRequirements extends Page {
         { field: 'sectionDescription', headerName: 'Section Description', width: 200 },
       ],
       apiResponse: []
-    };
-    this.callAPI("http://localhost:9000/select/QMSRequirements");
+    }
+    this.callAPI("http://localhost:9000/select/QMSRequirements")
   }
 
   handleButtonSaveClick = () => {
     // Handle the "Add" Button click event
-  };
+  }
 
   handleButtonAddClick = () => {
     // Handle the "Edit Requirements" Button click event
-  };
+  }
 
   render() {
-    var json = this.state.apiResponse;
+    var json = this.state.apiResponse
     //iterate over json and add to rows
-    const qmsRequirementsRows = [];
-    for (var i = 0; i < json.length; i++) {
-      console.log(json[i]);
-      qmsRequirementsRows.push({ id: json[i].QMSID, pageID: json[i].PageID, qmsSection: json[i].QMSSection, description: json[i].Description, sectionDescription: json[i].SectionDescription });
+    const qmsRequirementsRows = []
+    for (let i = 0; i < json.length; i++) {
+      console.log(json[i])
+      qmsRequirementsRows.push({ id: json[i].QMSID, pageID: json[i].PageID, qmsSection: json[i].QMSSection, description: json[i].Description, sectionDescription: json[i].SectionDescription })
     }
 
     return (
@@ -65,8 +65,8 @@ class EditQMSRequirements extends Page {
       />
     </Box>
       </div>
-    );
+    )
   }
 }
 
-export default EditQMSRequirements;
+export default EditQMSRequirements

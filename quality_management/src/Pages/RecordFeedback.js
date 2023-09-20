@@ -1,48 +1,46 @@
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Grid';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-import MenuItem from '@mui/material/MenuItem';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
-import Page from './Page';
+import Button from '@mui/material/Button'
+import TextField from '@mui/material/TextField'
+import Typography from '@mui/material/Typography'
+import Grid from '@mui/material/Grid'
+import FormControl from '@mui/material/FormControl'
+import Select from '@mui/material/Select'
+import MenuItem from '@mui/material/MenuItem'
+import List from '@mui/material/List'
+import ListItem from '@mui/material/ListItem'
+import ListItemText from '@mui/material/ListItemText'
+import Page from './Page'
 
 class RecordFeedback extends Page {
-  constructor(props) {
-    super(props);
+  constructor (props) {
+    super(props)
     this.state = {
       body: '',
       selectedQMSRequirement: '',
-      associatedQMSRequirements: [],
-    };
+      associatedQMSRequirements: []
+    }
   }
 
   handleSaveClick = () => {
-    // Handle the "Save" button click event
-    console.log('http://localhost:9000/insert/AuditFeedback/{ "body": "' + this.state.body + '", "qmsID": ' + JSON.stringify(this.state.associatedQMSRequirements) + '}');
-    this.callAPI('http://localhost:9000/insert/AuditFeedback/{ "body": "' + this.state.body + '", "qmsID":' + JSON.stringify(this.state.associatedQMSRequirements) + '}');
-  };
+    this.callAPI('http://localhost:9000/insert/AuditFeedback/{ "body": "' + this.state.body + '", "qmsID":' + JSON.stringify(this.state.associatedQMSRequirements) + '}')
+  }
 
   handleQMSRequirementChange = (event) => {
-    this.setState({ selectedQMSRequirement: event.target.value });
-  };
+    this.setState({ selectedQMSRequirement: event.target.value })
+  }
 
   handleAddQMSClick = () => {
     // Handle the "Add QMS Requirement" button click event
-    const { selectedQMSRequirement, associatedQMSRequirements } = this.state;
+    const { selectedQMSRequirement, associatedQMSRequirements } = this.state
 
     if (selectedQMSRequirement && !associatedQMSRequirements.includes(selectedQMSRequirement)) {
       this.setState({
         associatedQMSRequirements: [...associatedQMSRequirements, selectedQMSRequirement],
-        selectedQMSRequirement: '',
-      });
+        selectedQMSRequirement: ''
+      })
     }
-  };
+  }
 
-  render() {
+  render () {
     return (
       <div className="content">
         <Typography variant="h5">Record Feedback</Typography>
@@ -92,8 +90,8 @@ class RecordFeedback extends Page {
           </Grid>
         </Grid>
       </div>
-    );
+    )
   }
 }
 
-export default RecordFeedback;
+export default RecordFeedback
