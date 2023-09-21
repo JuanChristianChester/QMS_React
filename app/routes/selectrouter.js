@@ -3,7 +3,7 @@ const DBEvidence = require('../Database/DBEvidence')
 const DBQMSRequirements = require('../Database/DBQMSRequirements')
 const DBPDCAStages = require('../Database/DBPDCAStage')
 
-function selectRouter(app) {
+function selectRouter (app) {
   app.use('/select/:table', async (req, res, next) => {
     const tableName = req.params.table
     try {
@@ -11,12 +11,12 @@ function selectRouter(app) {
       res.json(data)
     } catch (error) {
       console.error('Error:', error)
-      res.json({ 'Error': error.message })
+      res.json({ Error: error.message })
     }
   })
 }
 
-async function handleDatabaseOperation(tableName) {
+async function handleDatabaseOperation (tableName) {
   switch (tableName) {
     case 'AuditFeedback':
       return await performDatabaseOperation(DBAuditFeedback, 'tblAuditFeedback')
@@ -29,7 +29,7 @@ async function handleDatabaseOperation(tableName) {
   }
 }
 
-async function performDatabaseOperation(DatabaseClass, tableName) {
+async function performDatabaseOperation (DatabaseClass, tableName) {
   const db = new DatabaseClass()
   return await db.selectAll(tableName)
 }

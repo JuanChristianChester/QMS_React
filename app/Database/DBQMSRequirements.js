@@ -1,13 +1,13 @@
-var Database = require('./Database')
+const Database = require('./Database')
 
 class DBQMSRequirement extends Database {
-  constructor(connection) {
+  constructor (connection) {
     super(connection)
     this.connection = connection
     this.qmsRequirementList = []
   }
 
-  addQMSRequirement(qmsRequirement) {
+  addQMSRequirement (qmsRequirement) {
     const insertQuery = 'INSERT INTO tblQMSRequirements (QMSID, PageID, QMSSection, Description, SectionDescription) VALUES (?, ?, ?, ?, ?)'
     this.connection.query(insertQuery, [qmsRequirement.id, qmsRequirement.pageID, qmsRequirement.section, qmsRequirement.description, qmsRequirement.sectionDescription], (error) => {
       if (error) {
@@ -18,7 +18,7 @@ class DBQMSRequirement extends Database {
     })
   }
 
-  editQMSRequirement(qmsRequirement) {
+  editQMSRequirement (qmsRequirement) {
     const updateQuery = 'UPDATE tblQMSRequirements SET PageID = ?, QMSSection = ?, Description = ?, SectionDescription = ? WHERE QMSID = ?'
     this.connection.query(updateQuery, [qmsRequirement.pageID, qmsRequirement.section, qmsRequirement.description, qmsRequirement.sectionDescription, qmsRequirement.id], (error) => {
       if (error) {

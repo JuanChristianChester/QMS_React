@@ -3,22 +3,24 @@ import { Typography } from '@mui/material'
 import Page from './Page'
 
 class ViewPDCAStages extends Page {
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.state = { apiResponse: [] }
-    this.callAPI("http://localhost:9000/select/PDCAStages")
+    this.callAPI('http://localhost:9000/select/PDCAStages')
   }
+
   handlePDCAStageSelectionChange = () => {
     // Handle the selection change event of pdcaTable
   }
-  render() {
+
+  render () {
     const pdcaStageColumns = [
       { field: 'id', headerName: 'PDCA ID', width: 200 },
       { field: 'PDCAStage', headerName: 'PDCA Stage', width: 200 },
     ]
-    var json = this.state.apiResponse
+    const json = this.state.apiResponse
     const pdcaStageRows = []
-    for (var i = 0; i < json.length; i++) {
+    for (let i = 0; i < json.length; i++) {
       pdcaStageRows.push({
         id: json[i].PDCAID,
         PDCAStage: json[i].PDCAStage

@@ -3,7 +3,7 @@ const DBEvidence = require('../Database/DBEvidence')
 const DBQMSRequirements = require('../Database/DBQMSRequirements')
 const DBPDCAStages = require('../Database/DBPDCAStage')
 
-function selectRouter(app) {
+function selectRouter (app) {
   app.use('/insert/:table/:json', async (req, res, next) => {
     const tableName = req.params.table
     const json = req.params.json
@@ -12,15 +12,15 @@ function selectRouter(app) {
       res.json(data)
     } catch (error) {
       console.error('Error:', error)
-      res.json({ 'Error': error.message })
+      res.json({ Error: error.message })
     }
   })
 }
 
-function handleDatabaseOperation(jsonstring, tableName) {
-  var success = false
-  var json = JSON.parse(jsonstring)
-  var db
+function handleDatabaseOperation (jsonstring, tableName) {
+  let success = false
+  const json = JSON.parse(jsonstring)
+  let db
   switch (tableName) {
     case 'AuditFeedback':
       db = new DBAuditFeedback()
@@ -39,7 +39,7 @@ function handleDatabaseOperation(jsonstring, tableName) {
       success = db.addPDCAStage(json.title, json.description)
       break
   }
-  return {"response": success ? "insert complete on " + tableName : "insert failed on " + tableName}
+  return { response: success ? 'insert complete on ' + tableName : 'insert failed on ' + tableName }
 }
 
 module.exports = selectRouter
