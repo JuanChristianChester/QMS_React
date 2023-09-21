@@ -1,24 +1,27 @@
 const Database = require('./Database')
 
 class DBEvidence extends Database {
-  constructor(config) {
+  constructor (config) {
     super(config)
     this.evidenceList = []
   }
 
-  async addEvidence(body, pdcaSectionID, evidenceDate) {
+  async addEvidence (body, pdcaSectionID, evidenceDate) {
+    this.evidenceList = await this.selectAll('tblEvidence')
     const evidenceID = this.evidenceList.length + 1
     this.evidenceList.push({ evidenceID, pdcaSectionID, evidenceDate, body })
 
     const insertQuery = 'INSERT INTO tblEvidence (EvidenceID, PDCASectionID, EvidenceDate, Body) VALUES (?, ?, ?, ?)'
     try {
       await this.executeQuery(insertQuery, [evidenceID, pdcaSectionID, evidenceDate, body])
+      return true
     } catch (error) {
       console.error('Error adding evidence:', error)
+      return false
     }
   }
 
-  async updateEvidence(body, pdcaSectionID, evidenceID) {
+  async updateEvidence (body, pdcaSectionID, evidenceID) {
     const updateQuery = 'UPDATE tblEvidence SET Body = ?, PDCASectionID = ? WHERE EvidenceID = ?'
     try {
       await this.executeQuery(updateQuery, [body, pdcaSectionID, evidenceID])
@@ -27,7 +30,7 @@ class DBEvidence extends Database {
     }
   }
 
-  async deleteEvidence(evidenceID) {
+  async deleteEvidence (evidenceID) {
     // ...
     // Similar logic for deleting evidence links
     // ...

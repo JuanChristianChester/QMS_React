@@ -29,11 +29,12 @@ function handleDatabaseOperation (jsonstring, tableName) {
     case 'QMSRequirements':
       db = new DBQMSRequirements()
       success = db.addQMSRequirement(json.pageID, json.QMSSection, json.description, json.sectionDescription)
-      // so a sample call to this api would look like this:
       break
     case 'Evidence':
       db = new DBEvidence()
-      success = db.addEvidence(json.title, json.description, json.qmsID)
+      success = db.addEvidence(json.body, json.pdcaSectionID, json.evidenceDate)
+      // So a sample api call would be:
+      // http://localhost:3000/insert?table=Evidence&json={"body":"test","pdcaSectionID":1,"evidenceDate":"2020-10-10"}
       break
     case 'PDCAStages':
       db = new DBPDCAStages()
