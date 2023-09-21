@@ -1,3 +1,4 @@
+import React from 'react'
 import { DataGrid } from '@mui/x-data-grid'
 import { Typography } from '@mui/material'
 import Page from './Page'
@@ -16,7 +17,7 @@ class ViewPDCAStages extends Page {
   render () {
     const pdcaStageColumns = [
       { field: 'id', headerName: 'PDCA ID', width: 200 },
-      { field: 'PDCAStage', headerName: 'PDCA Stage', width: 200 },
+      { field: 'PDCAStage', headerName: 'PDCA Stage', width: 200 }
     ]
     const json = this.state.apiResponse
     const pdcaStageRows = []

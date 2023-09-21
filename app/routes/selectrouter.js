@@ -4,8 +4,8 @@ const DBQMSRequirements = require('../Database/DBQMSRequirements')
 const DBPDCAStages = require('../Database/DBPDCAStage')
 
 function selectRouter (app) {
-  app.use('/select/:table', async (req, res, next) => {
-    const tableName = req.params.table
+  app.use('/select/', async (req, res, next) => {
+    const tableName = req.query.table
     try {
       const data = await handleDatabaseOperation(tableName)
       res.json(data)

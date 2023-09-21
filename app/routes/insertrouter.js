@@ -4,9 +4,9 @@ const DBQMSRequirements = require('../Database/DBQMSRequirements')
 const DBPDCAStages = require('../Database/DBPDCAStage')
 
 function selectRouter (app) {
-  app.use('/insert/:table/:json', async (req, res, next) => {
-    const tableName = req.params.table
-    const json = req.params.json
+  app.use('/insert', async (req, res, next) => {
+    const tableName = req.query.table
+    const json = req.query.json
     try {
       const data = await handleDatabaseOperation(json, tableName)
       res.json(data)
@@ -28,7 +28,8 @@ function handleDatabaseOperation (jsonstring, tableName) {
       break
     case 'QMSRequirements':
       db = new DBQMSRequirements()
-      success = db.addQMSRequirement(json.title, json.description, json.pdcaStage)
+      success = db.addQMSRequirement(json.pageID, json.QMSSection, json.description, json.sectionDescription)
+      // so a sample call to this api would look like this:
       break
     case 'Evidence':
       db = new DBEvidence()

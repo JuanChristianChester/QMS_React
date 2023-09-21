@@ -7,12 +7,12 @@ import Typography from '@mui/material/Typography'
 class Login extends Component {
   state = {
     username: '',
-    password: '',
+    password: ''
   }
 
   handleInputChange = (event, fieldName) => {
     this.setState({
-      [fieldName]: event.target.value,
+      [fieldName]: event.target.value
     })
   }
 
@@ -22,7 +22,7 @@ class Login extends Component {
     console.log('Logging in with username:', username)
   }
 
-  render() {
+  render () {
     const { username, password } = this.state
 
     return (

@@ -1,19 +1,23 @@
 const Database = require('./Database')
 
 class DBQMSRequirement extends Database {
-  constructor (connection) {
-    super(connection)
-    this.connection = connection
+  constructor (config) {
+    super(config)
     this.qmsRequirementList = []
   }
 
-  addQMSRequirement (qmsRequirement) {
+  async addQMSRequirement (pageID, section, description, sectionDescription) {
+    this.qmsRequirementList = await this.selectAll('tblQMSRequirements')
     const insertQuery = 'INSERT INTO tblQMSRequirements (QMSID, PageID, QMSSection, Description, SectionDescription) VALUES (?, ?, ?, ?, ?)'
-    this.connection.query(insertQuery, [qmsRequirement.id, qmsRequirement.pageID, qmsRequirement.section, qmsRequirement.description, qmsRequirement.sectionDescription], (error) => {
+    const qmsID = this.qmsRequirementList.length + 1
+    console.log('Adding QMS requirement:', qmsID, pageID, section, description, sectionDescription)
+    this.executeQuery(insertQuery, [qmsID, pageID, section, description, sectionDescription], (error) => {
       if (error) {
         console.error('Error adding QMS requirement:', error)
+        return false
       } else {
-        this.qmsRequirementList.push(qmsRequirement)
+        this.qmsRequirementList.push({ id: qmsID, pageID, section, description, sectionDescription })
+        return true
       }
     })
   }
