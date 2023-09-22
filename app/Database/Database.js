@@ -1,7 +1,7 @@
 const mysql = require('mysql2/promise')
 
 class Database {
-  constructor (config) {
+  constructor (config = {}) {
     this.config = {
       host: config.host || 'mariadb',
       user: config.user || 'root',

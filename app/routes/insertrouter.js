@@ -3,7 +3,7 @@ const DBEvidence = require('../Database/DBEvidence')
 const DBQMSRequirements = require('../Database/DBQMSRequirements')
 const DBPDCAStages = require('../Database/DBPDCAStage')
 
-function selectRouter (app) {
+function insertRouter (app) {
   app.use('/insert', async (req, res, next) => {
     const tableName = req.query.table
     const json = req.query.json
@@ -19,22 +19,22 @@ function selectRouter (app) {
 
 const tableMappings = {
   AuditFeedback: {
-    dbClass: DBAuditFeedback,
+    dbClass: new DBAuditFeedback(),
     method: 'addFeedback',
     params: ['body', 'qmsID']
   },
   QMSRequirements: {
-    dbClass: DBQMSRequirements,
+    dbClass: new DBQMSRequirements(),
     method: 'addQMSRequirement',
     params: ['pageID', 'QMSSection', 'description', 'sectionDescription']
   },
   Evidence: {
-    dbClass: DBEvidence,
+    dbClass: new DBEvidence(),
     method: 'addEvidence',
     params: ['body', 'pdcaSectionID', 'evidenceDate']
   },
   PDCAStages: {
-    dbClass: DBPDCAStages,
+    dbClass: new DBPDCAStages(),
     method: 'addPDCAStage',
     params: ['PDCAStage']
   }
@@ -48,12 +48,11 @@ function handleDatabaseOperation (jsonstring, tableName) {
   }
 
   const json = JSON.parse(jsonstring)
-  const DBtype = mapping.dbClass()
-  const db = new DBtype()
+  const db = mapping.dbClass
   const params = mapping.params.map(paramName => json[paramName])
   const success = db[mapping.method](...params)
 
   return { response: success ? 'insert complete on ' + tableName : 'insert failed on ' + tableName }
 }
 
-module.exports = selectRouter
+module.exports = insertRouter
