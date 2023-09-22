@@ -22,7 +22,7 @@ class RecordFeedback extends Page {
   }
 
   handleSaveClick = () => {
-    this.callAPI('http://localhost:9000/insert/AuditFeedback/{ "body": "' + this.state.body + '", "qmsID":' + JSON.stringify(this.state.associatedQMSRequirements) + '}')
+    this.callAPI('http://localhost:9000/insert/?table=AuditFeedback&json={ "body": "' + this.state.body + '", "qmsID":' + JSON.stringify(this.state.associatedQMSRequirements) + '}')
   }
 
   handleQMSRequirementChange = (event) => {
@@ -71,8 +71,8 @@ class RecordFeedback extends Page {
                   Select an associated QMS requirement
                 </MenuItem>
                 {/* Replace with actual QMS requirement options */}
-                <MenuItem value="QMS1">QMS Requirement 1</MenuItem>
-                <MenuItem value= "QMS2" >QMS Requirement 2</MenuItem>
+                <MenuItem value="1">QMS Requirement 1</MenuItem>
+                <MenuItem value= "2" >QMS Requirement 2</MenuItem>
               </Select>
             </FormControl>
             <Button onClick={this.handleAddQMSClick}>Add</Button>

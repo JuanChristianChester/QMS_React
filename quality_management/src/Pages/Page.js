@@ -7,6 +7,7 @@ class Page extends React.Component {
   }
 
   callAPI (url) {
+    console.log(url)
     fetch(url)
       .then(res => res.json())
       .then(res => this.setState({ apiResponse: res }))

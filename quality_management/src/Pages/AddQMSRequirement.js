@@ -3,6 +3,8 @@ import Box from '@mui/material/Box'
 import { DataGrid } from '@mui/x-data-grid'
 import Button from '@mui/material/Button'
 import Page from './Page'
+import { TextField, Typography } from '@mui/material'
+import Grid from '@mui/material/Grid'
 class AddQMSRequirements extends Page {
   constructor (props) {
     super(props)
@@ -14,9 +16,13 @@ class AddQMSRequirements extends Page {
         { field: 'description', headerName: 'Description', width: 200 },
         { field: 'sectionDescription', headerName: 'Section Description', width: 200 }
       ],
-      apiResponse: []
+      apiResponse: [],
+      txtQMSSection: '',
+      txtPageNum: '',
+      txtDescription: '',
+      txtSectionDescription: ''
     }
-    this.callAPI('http://localhost:9000/select/QMSRequirements')
+    this.callAPI('http://localhost:9000/select/?table=QMSRequirements')
   }
 
   handleButtonAddClick = () => {
@@ -29,6 +35,8 @@ class AddQMSRequirements extends Page {
 
   handleButtonSaveClick = () => {
     // Handle the "Save" Button click event
+    this.callAPI('http://localhost:9000/insert/?table=QMSRequirements&json={ "QMSID": "' + this.state.txtQMSSection + '", "PageID":' + JSON.stringify(this.state.txtPage) + ', "QMSSection":' + JSON.stringify(this.state.txtQMSSection) + ', "Description":' + JSON.stringify(this.state.txtDescription) + ', "SectionDescription":' + JSON.stringify(this.state.txtSectionDescription) + '}')
+    this.callAPI('http://localhost:9000/select/?table=QMSRequirements')
   }
 
   render () {
@@ -42,15 +50,50 @@ class AddQMSRequirements extends Page {
 
     return (
       <div className="content">
-        <h2>Add QMS Requirements</h2>
-        <label>QMSSection</label>
-        <input type="text" name="txtQMSSection" />
-        <label>Page Number</label>
-        <input type="text" name="txtPage" />
-        <label>Description</label>
-        <textarea name="txtDescription" rows="4" />
-        <label>SectionDescription</label>
-        <textarea name="txtSectionDescription" rows="4" />
+        <Typography variant="h5">Add QMS Requirements</Typography>
+        <Grid container spacing={2}>
+        <Grid item xs={12}>
+        <TextField
+          name="QMSSection"
+          label="QMSSection"
+          fullWidth
+          value={this.state.txtQMSSection} type="text"
+          onChange={(e) => this.setState({ txtQMSSection: e.target.value })}
+        />
+        </Grid>
+        <Grid item xs={12}>
+        <TextField
+          name="PageNum"
+          label="PageNum"
+          fullWidth
+          value={this.state.txtPageNum} type="text"
+          onChange={(e) => this.setState({ txtPageNum: e.target.value })}
+        />
+        </Grid>
+        <Grid item xs={12}>
+        <TextField
+          name="Description"
+          label="Description"
+          multiline
+          rows={4}
+          variant="outlined"
+          fullWidth
+          value={this.state.txtDescription} type="text"
+          onChange={(e) => this.setState({ txtDescription: e.target.value })}
+        /></Grid>
+        <Grid item xs={12}>
+        <TextField
+          name="SectionDescription"
+          label="SectionDescription"
+          multiline
+          rows={4}
+          variant="outlined"
+          fullWidth
+          value={this.state.txtSectionDescription} type="text"
+          onChange={(e) => this.setState({ txtSectionDescription: e.target.value })}
+        />
+        </Grid>
+        </Grid>
         <Button onClick={this.handleButtonAddClick}>Add</Button>
         <Button onClick={this.handleButtonEditClick}>Edit Requirements</Button>
         <Box sx={{ height: 300, width: '100%' }}>

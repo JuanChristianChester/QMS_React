@@ -8,7 +8,7 @@ class ViewFeedback extends Page {
   constructor (props) {
     super(props)
     this.state = { apiResponse: [] }
-    this.callAPI('http://localhost:9000/select/AuditFeedback')
+    this.callAPI('http://localhost:9000/select/?table=AuditFeedback')
   }
 
   handleFeedbackTableSelectionChange = () => {
