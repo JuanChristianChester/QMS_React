@@ -13,6 +13,10 @@ class Database {
       ...config
     }
 
+    this.state = {
+      tableList: []
+    }
+
     this.pool = mysql.createPool(this.config)
   }
 

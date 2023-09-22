@@ -1,15 +1,10 @@
 const Database = require('./Database')
 
 class DBEvidence extends Database {
-  constructor (config) {
-    super(config)
-    this.evidenceList = []
-  }
-
   async addEvidence (body, pdcaSectionID, evidenceDate) {
-    this.evidenceList = await this.selectAll('tblEvidence')
-    const evidenceID = this.evidenceList.length + 1
-    this.evidenceList.push({ evidenceID, pdcaSectionID, evidenceDate, body })
+    this.tableList = await this.selectAll('tblEvidence')
+    const evidenceID = this.tableList.length + 1
+    this.tableList.push({ evidenceID, pdcaSectionID, evidenceDate, body })
 
     const insertQuery = 'INSERT INTO tblEvidence (EvidenceID, PDCASectionID, EvidenceDate, Body) VALUES (?, ?, ?, ?)'
     try {

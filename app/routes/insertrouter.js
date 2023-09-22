@@ -8,7 +8,7 @@ function selectRouter (app) {
     const tableName = req.query.table
     const json = req.query.json
     try {
-      const data = await handleDatabaseOperation(json, tableName)
+      const data = handleDatabaseOperation(json, tableName)
       res.json(data)
     } catch (error) {
       console.error('Error:', error)
@@ -33,12 +33,10 @@ function handleDatabaseOperation (jsonstring, tableName) {
     case 'Evidence':
       db = new DBEvidence()
       success = db.addEvidence(json.body, json.pdcaSectionID, json.evidenceDate)
-      // So a sample api call would be:
-      // http://localhost:3000/insert?table=Evidence&json={"body":"test","pdcaSectionID":1,"evidenceDate":"2020-10-10"}
       break
     case 'PDCAStages':
       db = new DBPDCAStages()
-      success = db.addPDCAStage(json.title, json.description)
+      success = db.addPDCAStage(json.PDCAStage)
       break
   }
   return { response: success ? 'insert complete on ' + tableName : 'insert failed on ' + tableName }
