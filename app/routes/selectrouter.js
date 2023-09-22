@@ -16,17 +16,19 @@ function selectRouter (app) {
   })
 }
 
+const tableMappings = {
+  AuditFeedback: { dbTable: DBAuditFeedback, tableName: 'tblAuditFeedback' },
+  QMSRequirements: { dbTable: DBQMSRequirements, tableName: 'tblQMSRequirements' },
+  Evidence: { dbTable: DBEvidence, tableName: 'tblEvidence' },
+  PDCAStages: { dbTable: DBPDCAStages, tableName: 'tblPDCAStage' }
+}
+
 async function handleDatabaseOperation (tableName) {
-  switch (tableName) {
-    case 'AuditFeedback':
-      return await performDatabaseOperation(DBAuditFeedback, 'tblAuditFeedback')
-    case 'QMSRequirements':
-      return await performDatabaseOperation(DBQMSRequirements, 'tblQMSRequirements')
-    case 'Evidence':
-      return await performDatabaseOperation(DBEvidence, 'tblEvidence')
-    case 'PDCAStages':
-      return await performDatabaseOperation(DBPDCAStages, 'tblPDCAStage')
+  if (!tableMappings[tableName]) {
+    throw new Error(`Table ${tableName} not found in tableMappings`)
   }
+
+  return await performDatabaseOperation(tableMappings[tableName].dbTable, tableMappings[tableName].tableName)
 }
 
 async function performDatabaseOperation (DatabaseClass, tableName) {

@@ -30,10 +30,6 @@ class DBAuditFeedback extends Database {
     }
   }
 
-  getAuditFeedback () {
-    return this.tableList
-  }
-
   async addFeedbackResponse (auditID, feedbackResponse) {
     const updateQuery = 'UPDATE tblAuditFeedback SET FeedbackResponse = ? WHERE AuditID = ?'
     try {

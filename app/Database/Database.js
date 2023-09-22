@@ -35,7 +35,7 @@ class Database {
   }
 
   async isValidTableName (tableName) {
-    // Implement your own validation logic here.
+    // Implement more validation logic here.
     // For example, you can check if tableName only contains alphanumeric characters and underscores.
     const validTableNameRegex = /^[A-Za-z0-9_]+$/
     return validTableNameRegex.test(tableName)

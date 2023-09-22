@@ -17,28 +17,42 @@ function selectRouter (app) {
   })
 }
 
-function handleDatabaseOperation (jsonstring, tableName) {
-  let success = false
-  const json = JSON.parse(jsonstring)
-  let db
-  switch (tableName) {
-    case 'AuditFeedback':
-      db = new DBAuditFeedback()
-      success = db.addFeedback(json.body, json.qmsID)
-      break
-    case 'QMSRequirements':
-      db = new DBQMSRequirements()
-      success = db.addQMSRequirement(json.pageID, json.QMSSection, json.description, json.sectionDescription)
-      break
-    case 'Evidence':
-      db = new DBEvidence()
-      success = db.addEvidence(json.body, json.pdcaSectionID, json.evidenceDate)
-      break
-    case 'PDCAStages':
-      db = new DBPDCAStages()
-      success = db.addPDCAStage(json.PDCAStage)
-      break
+const tableMappings = {
+  AuditFeedback: {
+    dbClass: DBAuditFeedback,
+    method: 'addFeedback',
+    params: ['body', 'qmsID']
+  },
+  QMSRequirements: {
+    dbClass: DBQMSRequirements,
+    method: 'addQMSRequirement',
+    params: ['pageID', 'QMSSection', 'description', 'sectionDescription']
+  },
+  Evidence: {
+    dbClass: DBEvidence,
+    method: 'addEvidence',
+    params: ['body', 'pdcaSectionID', 'evidenceDate']
+  },
+  PDCAStages: {
+    dbClass: DBPDCAStages,
+    method: 'addPDCAStage',
+    params: ['PDCAStage']
   }
+}
+
+function handleDatabaseOperation (jsonstring, tableName) {
+  const mapping = tableMappings[tableName]
+
+  if (!mapping) {
+    throw new Error(`Table ${tableName} not found in tableMappings`)
+  }
+
+  const json = JSON.parse(jsonstring)
+  const DBtype = mapping.dbClass()
+  const db = new DBtype()
+  const params = mapping.params.map(paramName => json[paramName])
+  const success = db[mapping.method](...params)
+
   return { response: success ? 'insert complete on ' + tableName : 'insert failed on ' + tableName }
 }
 
