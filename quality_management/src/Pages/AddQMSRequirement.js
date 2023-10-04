@@ -10,7 +10,6 @@ class AddQMSRequirements extends Page {
     super(props)
     this.state = {
       columns: [
-        { field: 'id', headerName: 'QMS ID', width: 90 },
         { field: 'pageID', headerName: 'Page ID', width: 200 },
         { field: 'qmsSection', headerName: 'QMS Section', width: 200 },
         { field: 'description', headerName: 'Description', width: 200 },
@@ -27,6 +26,9 @@ class AddQMSRequirements extends Page {
 
   handleButtonAddClick = () => {
     // Handle the "Add" Button click event
+    // insert should follow this format http://localhost:9000/insert/?table=QMSRequirements&json={ "QMSID": "test", "QMSSection":"test", "Description":"test", "SectionDescription":"test", "PageID": "101"}
+    this.callAPI('http://localhost:9000/insert/?table=QMSRequirements&json={ "QMSSection":"' + this.state.txtQMSSection + '", "description":"' + this.state.txtDescription + '", "sectionDescription":"' + this.state.txtSectionDescription + '", "pageID": "' + this.state.txtPageNum + '"}')
+    this.callAPI('http://localhost:9000/select/?table=QMSRequirements')
   }
 
   handleButtonEditClick = () => {
@@ -35,8 +37,7 @@ class AddQMSRequirements extends Page {
 
   handleButtonSaveClick = () => {
     // Handle the "Save" Button click event
-    this.callAPI('http://localhost:9000/insert/?table=QMSRequirements&json={ "QMSID": "' + this.state.txtQMSSection + '", "PageID":' + JSON.stringify(this.state.txtPage) + ', "QMSSection":' + JSON.stringify(this.state.txtQMSSection) + ', "Description":' + JSON.stringify(this.state.txtDescription) + ', "SectionDescription":' + JSON.stringify(this.state.txtSectionDescription) + '}')
-    this.callAPI('http://localhost:9000/select/?table=QMSRequirements')
+
   }
 
   render () {

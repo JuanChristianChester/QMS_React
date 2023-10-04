@@ -18,7 +18,7 @@ class EditEvidence extends Page {
       ],
       apiResponse: []
     }
-    this.callAPI('http://localhost:9000/select/Evidence')
+    this.callAPI('http://localhost:9000/select/?table = Evidence')
   }
 
   render () {
