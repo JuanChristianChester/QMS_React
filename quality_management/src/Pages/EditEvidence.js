@@ -7,7 +7,7 @@ import Dropzone from '../Pages/Elements/FileDialouge'
 import Page from './Page'
 
 class EditEvidence extends Page {
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.state = {
       columns: [
@@ -21,7 +21,7 @@ class EditEvidence extends Page {
     this.callAPI('http://localhost:9000/select/?table=Evidence')
   }
 
-  render() {
+  render () {
     const json = this.state.apiResponse
     console.log(json)
     // iterate over json and add to rows
