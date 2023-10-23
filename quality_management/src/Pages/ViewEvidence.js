@@ -27,6 +27,7 @@ class ViewEvidence extends Page {
     const evidenceRows = json.map((evidence) => {
       return { id: evidence.EvidenceID, pdcaSectionID: evidence.PDCASectionID, evidenceDate: evidence.EvidenceDate, body: evidence.Body }
     })
+
     return (
       <div className="content">
         <Typography variant="h4" gutterBottom> View Evidence </Typography>

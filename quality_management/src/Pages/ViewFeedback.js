@@ -24,9 +24,7 @@ class ViewFeedback extends Page {
 
     const json = this.state.apiResponse
 
-    const feedbackRows = json.map((feedback) => {
-      return { id: feedback.AuditID, AuditDetails: feedback.AuditDetails, FeedbackResponse: feedback.FeedbackResponse }
-    })
+    const feedbackRows = json.map((feedback) => { return { id: feedback.AuditID, AuditDetails: feedback.AuditDetails, FeedbackResponse: feedback.FeedbackResponse } })
     console.log(feedbackRows)
 
     return (
