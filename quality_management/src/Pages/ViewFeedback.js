@@ -23,15 +23,10 @@ class ViewFeedback extends Page {
     ]
 
     const json = this.state.apiResponse
-    // the json looks like this
-    const feedbackRows = []
-    for (let i = 0; i < json.length; i++) {
-      feedbackRows.push({
-        id: json[i].AuditID,
-        AuditDetails: json[i].AuditDetails,
-        FeedbackResponse: json[i].FeedbackResponse
-      })
-    }
+
+    const feedbackRows = json.map((feedback) => {
+      return { id: feedback.AuditID, AuditDetails: feedback.AuditDetails, FeedbackResponse: feedback.FeedbackResponse }
+    })
     console.log(feedbackRows)
 
     return (

@@ -20,13 +20,17 @@ class ViewPDCAStages extends Page {
       { field: 'PDCAStage', headerName: 'PDCA Stage', width: 200 }
     ]
     const json = this.state.apiResponse
-    const pdcaStageRows = []
-    for (let i = 0; i < json.length; i++) {
-      pdcaStageRows.push({
-        id: json[i].PDCAID,
-        PDCAStage: json[i].PDCAStage
-      })
-    }
+    // const pdcaStageRows = []
+    // for (let i = 0; i < json.length; i++) {
+    //   pdcaStageRows.push({
+    //     id: json[i].PDCAID,
+    //     PDCAStage: json[i].PDCAStage
+    //   })
+    // }
+
+    const pdcaStageRows = json.map((pdcaStage) => {
+      return { id: pdcaStage.PDCAID, PDCAStage: pdcaStage.PDCAStage }
+    })
 
     return (
       <div className="content">

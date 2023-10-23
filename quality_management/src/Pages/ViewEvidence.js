@@ -19,12 +19,14 @@ class ViewEvidence extends Page {
     ]
     const json = this.state.apiResponse
     // iterate over json and add to rows
-    const evidenceRows = []
-    for (let i = 0; i < json.length; i++) {
-      evidenceRows.push({ id: json[i].EvidenceID, pdcaSectionID: json[i].PDCASectionID, evidenceDate: json[i].EvidenceDate, body: json[i].Body })
-      console.log(json[i])
-    }
-
+    // const evidenceRows = []
+    // for (let i = 0; i < json.length; i++) {
+    //   evidenceRows.push({ id: json[i].EvidenceID, pdcaSectionID: json[i].PDCASectionID, evidenceDate: json[i].EvidenceDate, body: json[i].Body })
+    //   console.log(json[i])
+    // }
+    const evidenceRows = json.map((evidence) => {
+      return { id: evidence.EvidenceID, pdcaSectionID: evidence.PDCASectionID, evidenceDate: evidence.EvidenceDate, body: evidence.Body }
+    })
     return (
       <div className="content">
         <Typography variant="h4" gutterBottom> View Evidence </Typography>

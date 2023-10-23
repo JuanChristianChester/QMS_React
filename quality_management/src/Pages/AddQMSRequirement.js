@@ -42,13 +42,10 @@ class AddQMSRequirements extends Page {
 
   render () {
     const json = this.state.apiResponse
-    // iterate over json and add to rows
-    const qmsRequirementsRows = []
-    for (let i = 0; i < json.length; i++) {
-      console.log(json[i])
-      qmsRequirementsRows.push({ id: json[i].QMSID, pageID: json[i].PageID, qmsSection: json[i].QMSSection, description: json[i].Description, sectionDescription: json[i].SectionDescription })
-    }
 
+    const qmsRequirementsRows = json.map((qmsRequirement) => {
+      return { id: qmsRequirement.QMSID, pageID: qmsRequirement.PageID, qmsSection: qmsRequirement.QMSSection, description: qmsRequirement.Description, sectionDescription: qmsRequirement.SectionDescription }
+    })
     return (
       <div className="content">
         <Typography variant="h5">Add QMS Requirements</Typography>

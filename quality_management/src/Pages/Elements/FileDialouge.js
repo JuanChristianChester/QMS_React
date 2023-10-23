@@ -2,6 +2,9 @@ import React from 'react'
 import { useDropzone } from 'react-dropzone'
 
 function Dropzone () {
+  const fileCache = React.useCallback(files => {
+    console.log(files)
+  }, [])
   const { getRootProps, getInputProps, open, acceptedFiles } = useDropzone({
     // Disable click and keydown behavior
     noClick: true,

@@ -24,12 +24,9 @@ class EditEvidence extends Page {
   render () {
     const json = this.state.apiResponse
     console.log(json)
-    // iterate over json and add to rows
-    const evidenceRows = []
-    for (let i = 0; i < json.length; i++) {
-      evidenceRows.push({ id: json[i].EvidenceID, pdcaSectionID: json[i].PDCASectionID, evidenceDate: json[i].EvidenceDate, body: json[i].Body })
-      console.log(json[i])
-    }
+    const evidenceRows = json.map((evidence) => {
+      return { id: evidence.EvidenceID, pdcaSectionID: evidence.PDCASectionID, evidenceDate: evidence.EvidenceDate, body: evidence.Body }
+    })
     return (
       <div className="content">
         <h1>Edit Evidence</h1>
@@ -50,7 +47,7 @@ class EditEvidence extends Page {
           onChange={(e) => this.setState({ pdcaSectionID: e.target.value })}
           margin="normal"
         />
-        <Dropzone />
+        <Dropzone/>
         <Box sx={{ height: 300, width: '100%' }}>
           <DataGrid
             rows={evidenceRows}

@@ -33,12 +33,13 @@ class RecordFeedback extends Page {
     // Handle the "Add QMS Requirement" button click event
     const { selectedQMSRequirement, associatedQMSRequirements } = this.state
 
-    if (selectedQMSRequirement && !associatedQMSRequirements.includes(selectedQMSRequirement)) {
-      this.setState({
-        associatedQMSRequirements: [...associatedQMSRequirements, selectedQMSRequirement],
-        selectedQMSRequirement: ''
-      })
+    if (!(selectedQMSRequirement && !associatedQMSRequirements.includes(selectedQMSRequirement))) {
+      return
     }
+    this.setState({
+      associatedQMSRequirements: [...associatedQMSRequirements, selectedQMSRequirement],
+      selectedQMSRequirement: ''
+    })
   }
 
   render () {
